@@ -21,7 +21,6 @@ export default function Home() {
             <li>Friends</li>
             <li>Popular</li>
             <li>
-              <Friends />
             </li>
           </ul>
           <nav className='md:ml-auto hidden lg:flex flex-wrap space-x-6 items-center text-base justify-center font-semibold'>
@@ -131,6 +130,9 @@ export default function Home() {
                   <span className='text-white font-semibold'>Selengkapnya</span>
                 </button>
               </div>
+            </div>
+            <div className='hidden m-auto mr-0 lg:flex float-right flex-col w-3/12 space-y-4 py-12'>
+              <Friends />
             </div>
           </div>
         </div>
