@@ -20,7 +20,9 @@ export default function Home() {
             <li>Games</li>
             <li>Friends</li>
             <li>Popular</li>
-            <li><Friends  /></li>
+            <li>
+              <Friends />
+            </li>
           </ul>
           <nav className='md:ml-auto hidden lg:flex flex-wrap space-x-6 items-center text-base justify-center font-semibold'>
             <svg
@@ -30,7 +32,7 @@ export default function Home() {
               xmlns='http://www.w3.org/2000/svg'
             >
               <path
-                fill-rule='evenodd'
+                fillRule='evenodd'
                 d='M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z'
                 clip-rule='evenodd'
               ></path>
@@ -43,8 +45,8 @@ export default function Home() {
               xmlns='http://www.w3.org/2000/svg'
             >
               <path
-                stroke-linecap='round'
-                stroke-linejoin='round'
+                strokeLinecap='round'
+                strokeLinejoin='round'
                 stroke-width='2'
                 d='M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7'
               ></path>
@@ -69,7 +71,7 @@ export default function Home() {
                 xmlns='http://www.w3.org/2000/svg'
               >
                 <path
-                  fill-rule='evenodd'
+                  fillRule='evenodd'
                   d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z'
                   clip-rule='evenodd'
                 ></path>
@@ -104,7 +106,7 @@ export default function Home() {
                     xmlns='http://www.w3.org/2000/svg'
                   >
                     <path
-                      fill-rule='evenodd'
+                      fillRule='evenodd'
                       d='M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z'
                       clip-rule='evenodd'
                     ></path>
@@ -120,8 +122,8 @@ export default function Home() {
                     xmlns='http://www.w3.org/2000/svg'
                   >
                     <path
-                      stroke-linecap='round'
-                      stroke-linejoin='round'
+                      strokeLinecap='round'
+                      strokeLinejoin='round'
                       stroke-width='2'
                       d='M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
                     ></path>
@@ -135,7 +137,7 @@ export default function Home() {
         <div className='absolute w-full h-64 bottom-0 bg-gradient-to-t from-black'></div>
         <video
           className='w-full h-64 lg:h-screen object-cover -mt-8    '
-          autoplay
+          autoPlay
           muted
           loop
         >
