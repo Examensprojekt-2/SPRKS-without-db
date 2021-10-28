@@ -3,6 +3,7 @@ import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 import Friends from '../components/friends';
 import toggleFriendsAside from '../functions/functions';
+import Card from '../components/card';
 
 export default function Home() {
   return (
@@ -79,20 +80,18 @@ export default function Home() {
           </nav>
         </div>
       </div>
-      <div className='relative w-full h-screen'>
+      <div className='relative w-full h-screen mt-16'>
         <div className='absolute z-10 w-full h-full '>
           <div className='flex items-center justify-start h-full px-16'>
             <div className='flex-col hidden w-3/12 py-12 space-y-4 lg:flex '>
               <div className='flex flex-row w-full space-x-4'></div>
             </div>
             <div className='flex-col float-right w-3/12 py-12 m-auto mr-0 space-y-4'>
-              <button
-                onClick={toggleFriendsAside}
-                className='px-4 py-2 text-white duration-1000 bg-gray-600 rounded-md hover:text-black hover:bg-white'
-              >
-                Show Friends
-              </button>
               <Friends />
+              <Card
+                picture='https://ei.mau.se/files/2020/03/EI_daniel_P1022758_25_50-2.jpg'
+                text='lorem ipsumlorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum'
+              />
             </div>
           </div>
         </div>
