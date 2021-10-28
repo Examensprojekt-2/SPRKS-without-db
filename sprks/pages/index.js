@@ -2,28 +2,28 @@ import Head from 'next/head';
 import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 import Friends from '../components/friends';
+import toggleFriendsAside from '../functions/functions';
 
 export default function Home() {
   return (
-    <div>
-      <div className='text-white body-font fixed top-0 bg-gradient-to-b from-black w-full z-50'>
-        <div className=' px-16 flex flex-wrap p-5 flex-col md:flex-row items-center'>
-          <a className='flex title-font font-medium items-center text-white mb-4 md:mb-0'>
+    <div className='black'>
+      <div className='fixed top-0 z-50 w-full text-white body-font bg-gradient-to-b from-black'>
+        <div className='flex flex-col flex-wrap items-center p-5 px-16 md:flex-row'>
+          <a className='flex items-center mb-4 font-medium text-white title-font md:mb-0'>
             <img
               src='https://assets.nflxext.com/en_us/layout/ecweb/common/logo-shadow2x.png'
               className='w-24'
               alt=''
             ></img>
           </a>
-          <ul className='hidden lg:flex flex-row space-x-3 w-1/2 ml-12 text-sm'>
+          <ul className='flex-row hidden w-1/2 ml-12 space-x-3 text-sm lg:flex'>
             <li className='font-semibold'>Home</li>
             <li>Games</li>
             <li>Friends</li>
             <li>Popular</li>
-            <li>
-            </li>
+            <li></li>
           </ul>
-          <nav className='md:ml-auto hidden lg:flex flex-wrap space-x-6 items-center text-base justify-center font-semibold'>
+          <nav className='flex-wrap items-center justify-center hidden space-x-6 text-base font-semibold md:ml-auto lg:flex'>
             <svg
               className='w-6 h-6 font-bold'
               fill='currentColor'
@@ -64,7 +64,7 @@ export default function Home() {
                 alt=''
               ></img>
               <svg
-                className='w-5 h-5 stroke-current text-white'
+                className='w-5 h-5 text-white stroke-current'
                 fill='currentColor'
                 viewBox='0 0 20 20'
                 xmlns='http://www.w3.org/2000/svg'
@@ -79,72 +79,32 @@ export default function Home() {
           </nav>
         </div>
       </div>
-      <div className='w-full h-screen relative'>
-        <div className='absolute w-full h-full z-10 '>
-          <div className='px-16  h-full flex items-center justify-start'>
-            <div className='hidden lg:flex flex-col w-3/12 space-y-4 py-12 '>
-              <img
-                src='https://images.squarespace-cdn.com/content/v1/5d13b7659f576c0001314d95/1571231409892-IMKU7PIFTO0WW0JDGJ7C/StjarnstoftStudios_Logo_OnlyText.png'
-                alt=''
-              ></img>
-              <h3 className='text-2xl font-semibold text-white '>SPRKS GAME</h3>
-              <p className='text-lg text-white'>
-                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Duis
-                accumsan ante odio, aliquet commodo ipsum laoreet tempor.
-                Vestibulum malesuada elementum ipsum, eu convallis libero
-                finibus sed. Donec euismod sed nibh sit amet posuere. Nulla
-                lacinia fermentum finibus. Aenean id sollicitudin sem. Donec
-                venenatis sapien luctus accumsan convallis.
-              </p>
-              <div className='flex space-x-4 flex-row w-full'>
-                <button className=' px-3 mt-5 items-center shadow-md rounded-lg bg-white  space-x-2 py-2 justify-center flex w-32'>
-                  <svg
-                    className='w-6 h-6'
-                    fill='currentColor'
-                    viewBox='0 0 20 20'
-                    xmlns='http://www.w3.org/2000/svg'
-                  >
-                    <path
-                      fillRule='evenodd'
-                      d='M10 18a8 8 0 100-16 8 8 0 000 16zM9.555 7.168A1 1 0 008 8v4a1 1 0 001.555.832l3-2a1 1 0 000-1.664l-3-2z'
-                      clip-rule='evenodd'
-                    ></path>
-                  </svg>
-                  <span className='text-gray-800 font-semibold'>Putar</span>
-                </button>
-                <button className=' px-3 mt-5 items-center shadow-md rounded-lg bg-gray-500 bg-opacity-50  space-x-2 py-2 justify-center flex w-auto'>
-                  <svg
-                    className='w-6 h-6 text-white'
-                    fill='none'
-                    stroke='currentColor'
-                    viewBox='0 0 24 24'
-                    xmlns='http://www.w3.org/2000/svg'
-                  >
-                    <path
-                      strokeLinecap='round'
-                      strokeLinejoin='round'
-                      stroke-width='2'
-                      d='M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z'
-                    ></path>
-                  </svg>
-                  <span className='text-white font-semibold'>Selengkapnya</span>
-                </button>
-              </div>
+      <div className='relative w-full h-screen'>
+        <div className='absolute z-10 w-full h-full '>
+          <div className='flex items-center justify-start h-full px-16'>
+            <div className='flex-col hidden w-3/12 py-12 space-y-4 lg:flex '>
+              <div className='flex flex-row w-full space-x-4'></div>
             </div>
-            <div className='hidden m-auto mr-0 lg:flex float-right flex-col w-3/12 space-y-4 py-12'>
+            <div className='flex-col float-right w-3/12 py-12 m-auto mr-0 space-y-4'>
+              <button
+                onClick={toggleFriendsAside}
+                className='px-4 py-2 text-white duration-1000 bg-gray-600 rounded-md hover:text-black hover:bg-white'
+              >
+                Show Friends
+              </button>
               <Friends />
             </div>
           </div>
         </div>
-        <div className='absolute w-full h-64 bottom-0 bg-gradient-to-t from-black'></div>
+        <div className='absolute bottom-0 w-full h-64 bg-gradient-to-t from-black'></div>
         <video
-          className='w-full h-64 lg:h-screen object-cover -mt-8    '
+          className='object-cover w-full h-64 -mt-8 lg:h-screen '
           autoPlay
           muted
           loop
         >
           <source
-            className='h-screen object-contain'
+            className='object-contain h-screen'
             src='https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1280_10MG.mp4'
             type='video/mp4'
           ></source>
