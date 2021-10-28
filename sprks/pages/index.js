@@ -2,6 +2,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 import Friends from '../components/friends';
+import Card from '../components/card';
 
 export default function Home() {
   return (
@@ -133,6 +134,10 @@ export default function Home() {
             </div>
             <div className='hidden m-auto mr-0 lg:flex float-right flex-col w-3/12 space-y-4 py-12'>
               <Friends />
+              <Card 
+              picture= 'https://ei.mau.se/files/2020/03/EI_daniel_P1022758_25_50-2.jpg' 
+              text= 'lorem ipsumlorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum'
+              />
             </div>
           </div>
         </div>

@@ -13,7 +13,6 @@ function Friends (){
             <div className="border-4 border-light-blue-500 border-opacity-50 rounded-lg text-lg text-white">
                 <div className="py-2 px-2">
                 <p className="py-0.5">Jessen <p className="inline text-green-500 text-opacity-75">is playing </p><p className="inline">Fortnite</p></p>
-                <p className="py-0.5">Albin <p className="inline text-green-500 text-opacity-75">is playing </p><p className="inline">Roblox</p></p>
                 <p className="py-0.5">Adam <p className="inline text-blue-500 text-opacity-75">is online</p></p>
                 <p className="py-0.5">Erik <p className="inline text-blue-500 text-opacity-75">is online</p></p>
                 <p className="py-0.5">Oscar <p className="inline text-blue-500 text-opacity-75">is online</p></p>
