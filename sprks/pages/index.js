@@ -5,7 +5,7 @@ import Friends from '../components/friends';
 import Card from '../components/card';
 import LikedGames from '../components/likedGames';
 
-import CardSlider from '../components/slider/cardSlider';
+// import CardSlider from '../components/slider/cardSlider';
 
 export default function Home({deviceType}) {
 
@@ -163,7 +163,7 @@ h
         </video>
 
         <div className="container lg mx-auto">
-          <CardSlider />
+          <LikedGames />
         </div>
 
       </div>

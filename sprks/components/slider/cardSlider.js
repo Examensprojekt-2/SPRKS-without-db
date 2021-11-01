@@ -7,12 +7,12 @@ import Simple from "./Simple";
 import Section from "./Section";
 
 
-const CardSlider = ({ deviceType }) => {
+const CardSlider = ({ deviceType, cardData }) => {
 
   return (
     <Fragment>
       <Section>
-        <Simple deviceType={deviceType} />
+        <Simple deviceType={deviceType} cardData={cardData} />
       </Section>
     </Fragment>
   );
