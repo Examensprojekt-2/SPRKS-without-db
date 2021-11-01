@@ -1,19 +1,19 @@
 function Card({ picture, text }) {
   return (
-    <div class='max-w-sm bg-gray-400 rounded overflow-hidden shadow-lg'>
-      <img class='w-full' src={picture} alt='Mountain' />
-      <div class='px-6 py-4'>
-        <div class='font-bold text-xl mb-2'>Mountain</div>
-        <p class='text-gray-700 text-base'>{text}</p>
+    <div className='max-w-sm overflow-hidden bg-gray-400 rounded shadow-lg'>
+      <img className='w-full' src={picture} alt='Mountain' />
+      <div className='px-6 py-4'>
+        <div className='mb-2 text-xl font-bold'>Mountain</div>
+        <p className='text-base text-gray-700'>{text}</p>
       </div>
-      <div class='px-6 pt-4 pb-2'>
-        <span class='inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2'>
+      <div className='px-6 pt-4 pb-2'>
+        <span className='inline-block px-3 py-1 mb-2 mr-2 text-sm font-semibold text-gray-700 bg-gray-200 rounded-full'>
           #photography
         </span>
-        <span class='inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2'>
+        <span className='inline-block px-3 py-1 mb-2 mr-2 text-sm font-semibold text-gray-700 bg-gray-200 rounded-full'>
           #travel
         </span>
-        <span class='inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2'>
+        <span className='inline-block px-3 py-1 mb-2 mr-2 text-sm font-semibold text-gray-700 bg-gray-200 rounded-full'>
           #winter
         </span>
       </div>
