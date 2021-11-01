@@ -4,7 +4,7 @@ import styles from '../styles/Home.module.css';
 import Friends from '../components/friends';
 import { toggleFriendsAside } from '../functions/functions';
 import Card from '../components/card';
-import LikedGames from '../components/likedGames';
+
 
 import CardSlider from '../components/slider/cardSlider';
 
