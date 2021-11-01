@@ -1,5 +1,6 @@
 import Carousel from 'react-multi-carousel';
 import { Image } from 'semantic-ui-react';
+import Card from '../card';
 
 import LikedGames from '../../components/likedGames';
 
@@ -40,24 +41,27 @@ const images = [
 // It will work on real devices.
 const Simple = ({ currentList, deviceType }) => {
   return (
-    <Carousel
-      ssr
-      partialVisbile
-      deviceType={deviceType}
-      itemClass='image-item'
-      responsive={responsive}
-    >
-      {currentList.map((obj) => {
-        return (
-          <div>
-            <div>{console.log(obj.Image)}</div>
-            <div>{console.log(obj.Title)}</div>
-            <div>{console.log(obj.Description)}</div>
-            <LikedGames />
-          </div>
-        );
-      })}
-    </Carousel>
+    <div>
+      <h1 className='text-white'>{currentList[0].listTitle}</h1>
+      <Carousel
+        ssr
+        partialVisbile
+        deviceType={deviceType}
+        itemClass='image-item'
+        responsive={responsive}
+      >
+        {currentList.map((obj) => {
+          return (
+            <div>
+              {/* <LikedGames /> */}
+              <div className='container'>
+                <Card picture={obj.Image} text={obj.Description} />
+              </div>{' '}
+            </div>
+          );
+        })}
+      </Carousel>
+    </div>
   );
 };
 

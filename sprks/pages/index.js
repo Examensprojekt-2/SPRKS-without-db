@@ -120,8 +120,16 @@ export default function Home({ deviceType }) {
           ></source>
         </video>
 
-        <div className='container mx-auto lg'>
-          <CardSlider typeOfCard={'recommended'} />
+        <div className='container mx-auto'>
+          <div className='mb-12'>
+            <CardSlider className='mb-16' listType={'recommended'} />
+          </div>
+          <div className='mb-12'>
+            <CardSlider listType={'friendsPlaying'} />
+          </div>
+          <div className='pb-12'>
+            <CardSlider listType={'popularGames'} />
+          </div>
         </div>
       </div>
     </div>

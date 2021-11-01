@@ -5,58 +5,30 @@ import UAParser from 'ua-parser-js';
 import React, { Fragment } from 'react';
 import Simple from './Simple';
 import Section from './Section';
+import {
+  getFriendsPlaying,
+  getPopularGames,
+  getRecommendedGames,
+} from '../../functions/functions';
 
-const CardSlider = ({ typeOfCard, deviceType }) => {
+const CardSlider = ({ listType, deviceType }) => {
   function getRightList(type) {
     switch (type) {
       case 'recommended':
-        let recommended = [
-          {
-            Image:
-              'https://images.unsplash.com/photo-1549989476-69a92fa57c36?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-            Title: 'Test',
-            Description: 'test beskriving',
-          },
-          {
-            Image:
-              'https://images.unsplash.com/photo-1549989476-69a92fa57c36?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-            Title: 'Test',
-            Description: 'test beskriving',
-          },
-          {
-            Image:
-              'https://images.unsplash.com/photo-1549989476-69a92fa57c36?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-            Title: 'Test',
-            Description: 'test beskriving',
-          },
-          {
-            Image:
-              'https://images.unsplash.com/photo-1549989476-69a92fa57c36?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-            Title: 'Test',
-            Description: 'test beskriving',
-          },
-          {
-            Image:
-              'https://images.unsplash.com/photo-1549989476-69a92fa57c36?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-            Title: 'Test',
-            Description: 'test beskriving',
-          },
-          {
-            Image:
-              'https://images.unsplash.com/photo-1549989476-69a92fa57c36?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=800&q=60',
-            Title: 'Test',
-            Description: 'test beskriving',
-          },
-        ];
+        let recommended = getRecommendedGames();
         return recommended;
-        break;
-
+      case 'friendsPlaying':
+        let friendsPlaying = getFriendsPlaying();
+        return friendsPlaying;
+      case 'popularGames':
+        let popularGames = getPopularGames();
+        return popularGames;
       default:
         break;
     }
   }
 
-  let currentList = getRightList(typeOfCard);
+  let currentList = getRightList(listType);
 
   return (
     <Fragment>
