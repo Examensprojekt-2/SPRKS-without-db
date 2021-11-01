@@ -100,12 +100,9 @@ export default function Home({deviceType}) {
             </div>
           </div>
         </div>
-<<<<<<< HEAD
         <div className='absolute w-full h-64 bottom-0 bg-gradient-to-t from-black'>
         </div>
-=======
         <div className='absolute bottom-0 w-full h-64 bg-gradient-to-t from-black'></div>
->>>>>>> e55fe7589581f547ec2b865591f8b89ce0ef7fe3
         <video
           className='object-cover w-full h-64 -mt-8 lg:h-screen '
           autoPlay
