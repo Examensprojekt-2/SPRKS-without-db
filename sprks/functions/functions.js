@@ -11,3 +11,8 @@ export function toggleFriendsAside() {
   const friends = document.getElementById('friends').classList;
   friends.toggle('hidden');
 }
+
+export function toggleFriendsNew() {
+  const newFriends = document.getElementById('newFriends').classList;
+  newFriends.toggle('hidden');
+}

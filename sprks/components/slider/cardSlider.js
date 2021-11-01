@@ -3,8 +3,8 @@ import "react-multi-carousel/lib/styles.css";
 // import "./style.css";
 import UAParser from "ua-parser-js";
 import React, { Fragment } from "react";
-import Simple from "./Simple";
-import Section from "./Section";
+import Simple from "./simple";
+import Section from "./section";
 
 
 const CardSlider = ({ deviceType }) => {
