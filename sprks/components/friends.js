@@ -4,9 +4,6 @@ function Friends() {
   return (
     <div>
       <div>
-        <div className='border-4 border-opacity-50 rounded-full border-light-blue-500'>
-          <p className='m-2 text-center text-white'>Friends-list</p>
-        </div>
         <div className='py-2 text-xl text-green-500'>
           <h1>Online</h1>
         </div>

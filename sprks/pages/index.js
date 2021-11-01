@@ -2,7 +2,7 @@ import Head from 'next/head';
 import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 import Friends from '../components/friends';
-import toggleFriendsAside from '../functions/functions';
+import { toggleFriendsAside } from '../functions/functions';
 import Card from '../components/card';
 
 export default function Home() {
@@ -59,7 +59,10 @@ export default function Home() {
             >
               <path d='M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z'></path>
             </svg>
-            <button className='flex items-center'>
+            <button
+              onClick={() => toggleFriendsAside()}
+              className='flex items-center'
+            >
               <img
                 src='https://occ-0-58-64.1.nflxso.net/dnm/api/v6/0RO1pLmU93-gdXvuxd_iYjzPqkc/AAAABTw7t_oDR-SWh9ddj9kh9AlOqCabZMupMWano7R5wg9x1_KPjvABqKHNeCxcMddK7Ku9HsV6keglPmWPZeh0lKU.png?r=fcc'
                 alt=''
@@ -86,7 +89,11 @@ export default function Home() {
             <div className='flex-col hidden w-3/12 py-12 space-y-4 lg:flex '>
               <div className='flex flex-row w-full space-x-4'></div>
             </div>
-            <div className='flex-col float-right w-3/12 py-12 m-auto mr-0 space-y-4'>
+
+            <div
+              id='friends'
+              className='flex-col float-right w-3/12 py-12 m-auto mr-0 space-y-4'
+            >
               <Friends />
               <Card
                 picture='https://ei.mau.se/files/2020/03/EI_daniel_P1022758_25_50-2.jpg'

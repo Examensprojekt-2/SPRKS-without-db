@@ -8,6 +8,6 @@ export function getFriendsPlaying() {
   return null;
 }
 export function toggleFriendsAside() {
-  // document.getElementById('friendsComponent').toggle('hidden');
-  console.log('toggle');
+  const friends = document.getElementById('friends').classList;
+  friends.toggle('hidden');
 }
