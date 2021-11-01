@@ -8,8 +8,7 @@ import LikedGames from '../components/likedGames';
 
 import CardSlider from '../components/slider/cardSlider';
 
-export default function Home({deviceType}) {
-
+export default function Home({ deviceType }) {
   return (
     <div className='black'>
       <div className='fixed top-0 z-50 w-full text-white body-font bg-gradient-to-b from-black'>
@@ -103,12 +102,10 @@ export default function Home({deviceType}) {
                 picture='https://ei.mau.se/files/2020/03/EI_daniel_P1022758_25_50-2.jpg'
                 text='lorem ipsumlorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum'
               />
-
             </div>
           </div>
         </div>
-        <div className='absolute w-full h-64 bottom-0 bg-gradient-to-t from-black'>
-        </div>
+        <div className='absolute bottom-0 w-full h-64 bg-gradient-to-t from-black'></div>
         <div className='absolute bottom-0 w-full h-64 bg-gradient-to-t from-black'></div>
         <video
           className='object-cover w-full h-64 -mt-8 lg:h-screen '
@@ -123,10 +120,9 @@ export default function Home({deviceType}) {
           ></source>
         </video>
 
-        <div className="container lg mx-auto">
-          <CardSlider />
+        <div className='container mx-auto lg'>
+          <CardSlider typeOfCard={'recommended'} />
         </div>
-
       </div>
     </div>
   );

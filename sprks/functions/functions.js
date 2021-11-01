@@ -1,4 +1,11 @@
+import { CardDescription } from 'semantic-ui-react';
+
 export function getRecommendedGames() {
+  let recommendedObject = {
+    image: '',
+    title: '',
+    description: '',
+  };
   return null;
 }
 export function getPopularGames() {
