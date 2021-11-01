@@ -3,8 +3,12 @@ import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 import Friends from '../components/friends';
 import Card from '../components/card';
+import LikedGames from '../components/likedGames';
 
-export default function Home() {
+import CardSlider from '../components/slider/cardSlider';
+
+export default function Home({deviceType}) {
+
   return (
     <div>
       <div className='text-white body-font fixed top-0 bg-gradient-to-b from-black w-full z-50'>
@@ -139,10 +143,12 @@ h
               picture= 'https://ei.mau.se/files/2020/03/EI_daniel_P1022758_25_50-2.jpg' 
               text= 'lorem ipsumlorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum'
               />
+
             </div>
           </div>
         </div>
-        <div className='absolute w-full h-64 bottom-0 bg-gradient-to-t from-black'></div>
+        <div className='absolute w-full h-64 bottom-0 bg-gradient-to-t from-black'>
+        </div>
         <video
           className='w-full h-64 lg:h-screen object-cover -mt-8    '
           autoPlay
@@ -155,6 +161,11 @@ h
             type='video/mp4'
           ></source>
         </video>
+
+        <div className="container lg mx-auto">
+          <CardSlider />
+        </div>
+
       </div>
     </div>
   );
