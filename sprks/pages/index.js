@@ -7,6 +7,7 @@ import Card from '../components/card';
 import LikedGames from '../components/likedGames';
 import Hamburger from '../components/hamburger';
 import NewFriends from '../components/newFriends';
+import userProfile from '../components/userProfile';
 
 import CardSlider from '../components/slider/cardSlider';
 
@@ -101,13 +102,15 @@ export default function Home({deviceType}) {
 
             <div
               id='newFriends'
-              className='flex-col float-right w-3/12 py-12 m-auto mr-0 space-y-4'
+              className='flex-col float-right w-3/12 py-12 m-auto mr-0 mt-0 space-y-4'
+              style={{display: 'none'}}
             >
               <NewFriends />
             </div>
             <div
               id='friends'
-              className='flex-col float-right w-3/12 py-12 m-auto mr-0 space-y-4'
+              className='flex-col float-right w-3/12 py-12 m-auto mr-0 mt-0 space-y-4'
+              style={{display: 'none'}}
             >
               <Friends />
             </div>

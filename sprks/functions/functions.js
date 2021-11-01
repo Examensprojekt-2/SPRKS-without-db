@@ -8,11 +8,23 @@ export function getFriendsPlaying() {
   return null;
 }
 export function toggleFriendsAside() {
-  const friends = document.getElementById('friends').classList;
-  friends.toggle('hidden');
+  const friends = document.getElementById('friends');
+  const newFriends = document.getElementById('newFriends');
+  if (friends.style.display === "none") {
+    friends.style.display = "block";
+    newFriends.style.display = "none";
+  } else {
+    friends.style.display = "none";
+  }
 }
 
 export function toggleFriendsNew() {
-  const newFriends = document.getElementById('newFriends').classList;
-  newFriends.toggle('hidden');
+  const friends = document.getElementById('friends');
+  const newFriends = document.getElementById('newFriends');
+  if (newFriends.style.display === "none") {
+    newFriends.style.display = "block";
+    friends.style.display = "none";
+  } else {
+    newFriends.style.display = "none";
+  }
 }

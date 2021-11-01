@@ -1,6 +1,6 @@
 import { users } from '../database/user';
 
-function NewFriends() {
+function userProfile() {
   return (
 
 <div class="my-10">
@@ -11,8 +11,8 @@ function NewFriends() {
             src="https://randomuser.me/api/portraits/men/24.jpg"
             alt="Randy Robertson"
           />
-          <p class="pt-2 text-lg font-semibold">{users[0].name}</p>
-          <p class="text-sm text-gray-600">{users[0].email}</p>
+          <p class="pt-2 text-lg font-semibold">Randy Robertson</p>
+          <p class="text-sm text-gray-600">randy.robertson@example.com</p>
           <div class="mt-5">
             <a
               href="#"
@@ -122,4 +122,4 @@ function NewFriends() {
     </div>
   )
 }
-export default NewFriends;
+export default userProfile;
