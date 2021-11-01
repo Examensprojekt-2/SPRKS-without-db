@@ -5,20 +5,20 @@ function Friends() {
     <div class="w-full max-w-screen-xl mx-auto mt-4 p-6">
   <div class="relative rounded overflow-hidden border border-grey-light mb-8 mt-1 bg-white">
       <div class="bg-white overflow-hidden">
-      <img
-            class="h-24 w-24 rounded-full mx-auto"
+
+        <div class="w-4/5 h-10 py-3 px-1">
+        <img
+            class="h-16 w-16 rounded-full ml-7 mt-1"
             src="https://randomuser.me/api/portraits/men/24.jpg"
             alt="Randy Robertson"
           />
-        <div class="w-4/5 h-10 py-3 px-1">
-
           <p class="hover:text-blue-dark text-center font-bold">{users[0].name}</p>
         </div>
-        <div class="sm:flex sm:items-center px-2 py-4">
+        <div class="sm:flex sm:items-center px-2 py-4 mt-8">
           <div class="flex-grow">
-            <h3 class="font-normal px-2 py-3 leading-tight">Friends</h3>
+            <h3 class="font-normal px-2 py-3">Friends</h3>
             <input type="text" placeholder="Search teams or members"
-              class="my-2 w-full text-sm bg-grey-light text-grey-darkest rounded h-10 p-3 focus:outline-none" />
+              class="my-2 w-full text-sm bg-grey-light text-grey-darkest rounded h-10 p-3 focus:outline-none mt-0" />
             <div class="w-full">
               <div class="flex cursor-pointer my-1 hover:bg-blue-lightest rounded">
                 <div class="w-8 h-10 text-center py-1">
