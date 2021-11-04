@@ -35,7 +35,7 @@ const Simple = ({ currentList, deviceType }) => {
         {currentList.map((obj) => {
           return (
             <div>
-              <div className='container'>
+              <div className='container pb-4'>
                 <Card picture={obj.Image} text={obj.Description} likes={obj.Likes} title= {obj.Title} tags={obj.Tags}/>
               </div>{' '}
             </div>

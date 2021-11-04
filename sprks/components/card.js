@@ -1,8 +1,8 @@
 function Card({ picture, text, likes, title, tags }) {
   return (
     
-    <div class='max-w-sm bg-transparent shadow-sm rounded overflow-hidden '>
-    <div class='mx-auto md:w-auto md:max-w-5xl bg-gray-400 max-h-screen shadow-2xl flex-row rounded relative ml-3 mr-3'>
+    
+    <div class='mx-auto md:w-auto md:max-w-5xl pb-4 bg-transparent max-h-screen shadow-sm flex-row rounded relative ml-3 mr-3'>
       <img class='w-full' src={picture} alt='Mountain' />
       <div class='px-6 py-4'>
         <div class='font-bold text-xl mb-2'>{title}</div>
