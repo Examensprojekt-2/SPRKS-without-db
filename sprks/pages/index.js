@@ -2,10 +2,12 @@ import Head from 'next/head';
 import Image from 'next/image';
 import styles from '../styles/Home.module.css';
 import Friends from '../components/friends';
-import { toggleFriendsAside } from '../functions/functions';
+import { toggleFriendsNew } from '../functions/functions';
 import Card from '../components/card';
 
-
+import Hamburger from '../components/hamburger';
+import NewFriends from '../components/newFriends';
+import userProfile from '../components/userProfile';
 import CardSlider from '../components/slider/cardSlider';
 
 export default function Home({ deviceType }) {
@@ -46,7 +48,8 @@ export default function Home({ deviceType }) {
               stroke='currentColor'
               viewBox='0 0 24 24'
               xmlns='http://www.w3.org/2000/svg'
-            >
+            > 
+            
               <path
                 strokeLinecap='round'
                 strokeLinejoin='round'
@@ -54,7 +57,7 @@ export default function Home({ deviceType }) {
                 d='M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7'
               ></path>
             </svg>
-            <svg
+            <svg 
               className='w-6 h-6'
               fill='currentColor'
               viewBox='0 0 20 20'
@@ -63,7 +66,7 @@ export default function Home({ deviceType }) {
               <path d='M10 2a6 6 0 00-6 6v3.586l-.707.707A1 1 0 004 14h12a1 1 0 00.707-1.707L16 11.586V8a6 6 0 00-6-6zM10 18a3 3 0 01-3-3h6a3 3 0 01-3 3z'></path>
             </svg>
             <button
-              onClick={() => toggleFriendsAside()}
+              onClick={() => toggleFriendsNew()}
               className='flex items-center'
             >
               <img
@@ -82,7 +85,9 @@ export default function Home({ deviceType }) {
                   clip-rule='evenodd'
                 ></path>
               </svg>
+ 
             </button>
+            <Hamburger  />
           </nav>
         </div>
       </div>
@@ -94,14 +99,19 @@ export default function Home({ deviceType }) {
             </div>
 
             <div
+              id='newFriends'
+              className='flex-col float-right w-3/12 py-12 m-auto mr-0 mt-0 space-y-4'
+              style={{display: 'none'}}
+            >
+              <NewFriends />
+            </div>
+            <div
               id='friends'
-              className='flex-col float-right w-3/12 py-12 m-auto mr-0 space-y-4'
+              className='flex-col float-right w-3/12 py-12 m-auto mr-0 mt-0 space-y-4'
+              style={{display: 'none'}}
             >
               <Friends />
-              <Card
-                picture='https://ei.mau.se/files/2020/03/EI_daniel_P1022758_25_50-2.jpg'
-                text='lorem ipsumlorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum'
-              />
+            
             </div>
           </div>
         </div>
@@ -132,6 +142,7 @@ export default function Home({ deviceType }) {
           </div>
         </div>
       </div>
+    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
     </div>
   );
 }
