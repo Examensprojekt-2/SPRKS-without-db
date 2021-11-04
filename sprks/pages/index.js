@@ -4,7 +4,7 @@ import styles from '../styles/Home.module.css';
 import Friends from '../components/friends';
 import { toggleFriendsNew } from '../functions/functions';
 import Card from '../components/card';
-import LikedGames from '../components/likedGames';
+
 import Hamburger from '../components/hamburger';
 import NewFriends from '../components/newFriends';
 import userProfile from '../components/userProfile';
@@ -111,10 +111,7 @@ export default function Home({ deviceType }) {
               style={{display: 'none'}}
             >
               <Friends />
-              <Card
-                picture='https://ei.mau.se/files/2020/03/EI_daniel_P1022758_25_50-2.jpg'
-                text='lorem ipsumlorem ipsum lorem ipsum lorem ipsum lorem ipsum lorem ipsum'
-              />
+            
             </div>
           </div>
         </div>
