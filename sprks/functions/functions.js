@@ -3,8 +3,8 @@ export function getRecommendedGames() {
     {
       listTitle: 'Recommended for you',
       Image: 'https://cdn.80.lv/api/upload/content/e1/5d2c88a790e80.jpg',
-      Title: 'Test',
-      Description: 'test beskriving 1',
+      Title: 'Roblox',
+      Description: 'Nummer 1 spelplattform i världen. Först med denna idé ',
     },
     {
       Image: 'http://i.imgur.com/58lD2.jpg',

@@ -5,6 +5,7 @@ import Friends from '../components/friends';
 import { toggleFriendsNew } from '../functions/functions';
 import Card from '../components/card';
 
+
 import Hamburger from '../components/hamburger';
 import NewFriends from '../components/newFriends';
 import userProfile from '../components/userProfile';
@@ -12,12 +13,12 @@ import CardSlider from '../components/slider/cardSlider';
 
 export default function Home({ deviceType }) {
   return (
-    <div className='black'>
+    <div className='bg-black'>
       <div className='fixed top-0 z-50 w-full text-white body-font bg-gradient-to-b from-black'>
         <div className='flex flex-col flex-wrap items-center p-5 px-16 md:flex-row'>
           <a className='flex items-center mb-4 font-medium text-white title-font md:mb-0'>
             <img
-              src='https://assets.nflxext.com/en_us/layout/ecweb/common/logo-shadow2x.png'
+              src='/sprks-logo.png'
               className='w-24'
               alt=''
             ></img>
@@ -69,11 +70,13 @@ export default function Home({ deviceType }) {
               onClick={() => toggleFriendsNew()}
               className='flex items-center'
             >
+            
               <img
-                src='https://occ-0-58-64.1.nflxso.net/dnm/api/v6/0RO1pLmU93-gdXvuxd_iYjzPqkc/AAAABTw7t_oDR-SWh9ddj9kh9AlOqCabZMupMWano7R5wg9x1_KPjvABqKHNeCxcMddK7Ku9HsV6keglPmWPZeh0lKU.png?r=fcc'
+                src='/profile-logo.png'
                 alt=''
+                className='w-9 h-1/2'
               ></img>
-              <svg
+              {/* <svg
                 className='w-5 h-5 text-white stroke-current'
                 fill='currentColor'
                 viewBox='0 0 20 20'
@@ -84,7 +87,7 @@ export default function Home({ deviceType }) {
                   d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z'
                   clip-rule='evenodd'
                 ></path>
-              </svg>
+              </svg> */}
  
             </button>
             <Hamburger  />
@@ -117,18 +120,25 @@ export default function Home({ deviceType }) {
         </div>
         <div className='absolute bottom-0 w-full h-64 bg-gradient-to-t from-black'></div>
         <div className='absolute bottom-0 w-full h-64 bg-gradient-to-t from-black'></div>
+        <div className='object-cover w-1/2 h-1/2 m-auto'>
         <video
-          className='object-cover w-full h-64 -mt-8 lg:h-screen '
-          autoPlay
-          muted
-          loop
-        >
-          <source
-            className='object-contain h-screen'
-            src='https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1280_10MG.mp4'
-            type='video/mp4'
-          ></source>
-        </video>
+         
+         className='object-cover md:w-auto h-full '
+         autoPlay
+         muted
+         loop
+       >
+         <source
+          id='video'
+           className='object-contain h-screen'
+           src='https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1280_10MG.mp4'
+           height='10'
+           type='video/mp4'
+         ></source>
+       </video>
+
+        </div>
+        
 
         <div className='container mx-auto'>
           <div className='mb-12'>
