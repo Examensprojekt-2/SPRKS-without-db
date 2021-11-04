@@ -1,9 +1,9 @@
-function Card({ picture, text, likes, tags }) {
+function Card({ picture, text, likes, title, tags }) {
   return (
     <div class='mx-auto md:w-auto md:max-w-5xl bg-gray-400 max-h-screen shadow-2xl flex-row rounded relative ml-3 mr-3'>
       <img class='w-full' src={picture} alt='Mountain' />
       <div class='px-6 py-4'>
-        <div class='font-bold text-xl mb-2'>Mountains</div>
+        <div class='font-bold text-xl mb-2'>{title}</div>
         <p class='text-gray-700 text-base'>{text}</p>
       </div>
       <div class='text-center'>
@@ -22,8 +22,6 @@ function Card({ picture, text, likes, tags }) {
       <div class='px-6 pt-4 pb-2 text-center'>
         { tags && (
           tags.map(tag => {
-            console.log("TAGS", tags);
-            console.log("TAG", tag);
             return (
               <span class='inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2'>
               {tag}
@@ -33,6 +31,7 @@ function Card({ picture, text, likes, tags }) {
         )}
       </div>
     </div>
+   
   );
 }
 
