@@ -84,6 +84,12 @@ function Friends() {
               Add friend?
             </button>
           </div>
+          <div class="">
+            <button class="text-white hover:text-grey-dark py-2 px-4 rounded bg-blue-700">
+              Add friend?
+            </button>
+          </div>
+          
         </div>
       </div>
   </div>
