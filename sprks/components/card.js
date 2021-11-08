@@ -1,7 +1,5 @@
 function Card({ picture, text, likes, title, tags }) {
   return (
-    
-    
     <div class='mx-auto md:w-auto md:max-w-5xl pb-4 bg-transparent max-h-screen shadow-sm flex-row rounded relative ml-3 mr-3'>
       <img class='w-full' src={picture} alt='Mountain' />
       <div class='px-6 py-4'>
