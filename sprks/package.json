@@ -8,8 +8,11 @@
     "start": "next start"
   },
   "dependencies": {
+    "@prisma/client": "^3.4.1",
     "alpinejs": "^3.4.2",
+    "express": "^4.17.1",
     "next": "11.1.2",
+    "pg": "^8.7.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
     "react-multi-carousel": "^2.6.5",
@@ -20,6 +23,7 @@
   "devDependencies": {
     "autoprefixer": "^10.3.7",
     "postcss": "^8.3.11",
+    "prisma": "^3.4.1",
     "tailwindcss": "^2.2.17"
   }
 }

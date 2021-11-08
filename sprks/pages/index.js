@@ -5,11 +5,11 @@ import Friends from '../components/friends';
 import { toggleFriendsNew } from '../functions/functions';
 import Card from '../components/card';
 
-
 import Hamburger from '../components/hamburger';
 import NewFriends from '../components/newFriends';
 import userProfile from '../components/userProfile';
 import CardSlider from '../components/slider/cardSlider';
+
 
 export default function Home({ deviceType }) {
   return (
