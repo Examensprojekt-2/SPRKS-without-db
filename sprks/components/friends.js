@@ -3,20 +3,22 @@ import { users } from '../database/user';
 function Friends() {
   return (
     <div class="w-full max-w-screen-xl mx-auto mt-4 p-6">
-  <div class="relative rounded overflow-hidden border border-grey-light mb-8 mt-1 bg-white">
+  <div class="fixed rounded overflow-hidden border border-grey-light mb-8 mt-1 bg-white w-80">
       <div class="bg-white overflow-hidden">
-
-        <div class="w-4/5 h-10 py-3 px-1">
+        <div class="flex justify-center m-auto">
         <img
-            class="h-16 w-16 rounded-full ml-7 mt-1"
+            class="h-16 w-16 rounded-full mt-10"
             src="https://randomuser.me/api/portraits/men/24.jpg"
             alt="Randy Robertson"
           />
-          <p class="hover:text-blue-dark text-center font-bold">{users[0].name}</p>
+        
+        </div>
+        <h3 class="font-normal px-2 py-3 text-center">{users[0].name}</h3>
         </div>
         <div class="sm:flex sm:items-center px-2 py-4 mt-8">
           <div class="flex-grow">
-            <h3 class="font-normal px-2 py-3">Friends</h3>
+          <h3 class="font-normal px-2 py-3">Friends</h3>
+
             <input type="text" placeholder="Search teams or members"
               class="my-2 w-full text-sm bg-grey-light text-grey-darkest rounded h-10 p-3 focus:outline-none mt-0" />
             <div class="w-full">
@@ -81,13 +83,12 @@ function Friends() {
         <div class="sm:flex bg-grey-light sm:items-center px-2 py-4 flex justify-center color  ">
           <div class="">
             <button class="text-white hover:text-grey-dark py-2 px-4 rounded bg-blue-700">
-              Add friend?
+              Add friend
             </button>
           </div>
         </div>
       </div>
   </div>
-</div>
   )
 }
 export default Friends;
