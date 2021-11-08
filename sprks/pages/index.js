@@ -10,6 +10,7 @@ import NewFriends from '../components/newFriends';
 import userProfile from '../components/userProfile';
 import CardSlider from '../components/slider/cardSlider';
 
+
 export default function Home({ deviceType }) {
   return (
     <div className='bg-black'>
