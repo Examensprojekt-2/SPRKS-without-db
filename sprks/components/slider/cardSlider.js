@@ -11,11 +11,11 @@ import {
   getRecommendedGames,
 } from '../../functions/functions';
 
-const CardSlider = ({ listType, deviceType }) => {
-  function getRightList(type) {
+const CardSlider = ({ listType, user, deviceType }) => {
+  function getRightList(type, user) {
     switch (type) {
       case 'recommended':
-        let recommended = getRecommendedGames();
+        let recommended = getRecommendedGames(user);
         return recommended;
       case 'friendsPlaying':
         let friendsPlaying = getFriendsPlaying();
@@ -28,12 +28,15 @@ const CardSlider = ({ listType, deviceType }) => {
     }
   }
 
-  let currentList = getRightList(listType);
-
+  let currentList = getRightList(listType, user);
+  console.log(currentList);
   return (
     <Fragment>
       <Section>
-        <Simple currentList={currentList} deviceType={deviceType} />
+        {/* Show list of games if currentlist is loaded */}
+        {currentList ? (
+          <Simple currentList={currentList} deviceType={deviceType} />
+        ) : null}
       </Section>
     </Fragment>
   );
