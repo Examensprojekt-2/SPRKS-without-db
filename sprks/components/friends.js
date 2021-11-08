@@ -2,8 +2,8 @@ import { users } from '../database/user';
 
 function Friends() {
   return (
-    <div class="w-full max-w-screen-xl mx-auto mt-4 p-6">
-  <div class="fixed rounded overflow-hidden border border-grey-light mb-8 mt-1 bg-white w-80">
+    <div class="w-full max-w-screen-xl">
+  <div class="rounded overflow-hidden border border-grey-light bg-white w-80">
       <div class="bg-white overflow-hidden">
         <div class="flex justify-center m-auto">
         <img

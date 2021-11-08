@@ -3,8 +3,8 @@ import { users } from '../database/user';
 function NewFriends() {
   return (
 
-<div class="my-10">
-      <div class="fixed bg-white rounded overflow-hidden shadow-lg w-80 rounded-lg bg-opacity-90">
+<div>
+      <div class="bg-white rounded overflow-hidden shadow-lg w-80 rounded-lg bg-opacity-90">
         <div class="text-center p-6  border-b">
           <img
             class="h-24 w-24 rounded-full mx-auto"

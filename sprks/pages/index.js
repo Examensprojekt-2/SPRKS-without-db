@@ -93,28 +93,27 @@ export default function Home({ deviceType }) {
             <Hamburger  />
           </nav>
         </div>
+        <div
+              id='newFriends'
+              className='float-right mr-12'
+              style={{display: 'none'}}
+            >
+              <NewFriends />
+        </div>
+        <div
+              id='friends'
+              className='float-right mr-12'
+              style={{display: 'none'}}
+            >
+              <Friends />
+            
+            </div>
       </div>
       <div className='relative w-full h-screen mt-16'>
         <div className='absolute z-10 w-full h-full '>
           <div className='flex items-center justify-start h-full px-16'>
             <div className='flex-col hidden w-3/12 py-12 space-y-4 lg:flex '>
               <div className='flex flex-row w-full space-x-4'></div>
-            </div>
-
-            <div
-              id='newFriends'
-              className='flex-col float-right w-3/12 py-12 m-auto mr-0 mt-0 space-y-4'
-              style={{display: 'none'}}
-            >
-              <NewFriends />
-            </div>
-            <div
-              id='friends'
-              className='flex-col float-right w-3/12 py-12 m-auto mr-0 mt-0 space-y-4'
-              style={{display: 'none'}}
-            >
-              <Friends />
-            
             </div>
           </div>
         </div>
