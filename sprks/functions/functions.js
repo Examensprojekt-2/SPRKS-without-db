@@ -1,56 +1,221 @@
-export function getRecommendedGames() {
-  let recommendedList = [
-    {
-      listTitle: 'Recommended for you',
-      Image: 'https://cdn.80.lv/api/upload/content/e1/5d2c88a790e80.jpg',
-      Title: 'Roblox',
-      Description: 'Nummer 1 spelplattform i världen.  ',
-      Likes: 45,
-      Tags: ["#action", "#roleplay"]
-    },
-    {
-      Image: 'http://i.imgur.com/58lD2.jpg',
-      Title: 'Test',
-      Description: 'test beskriving 2',
-      Likes: 32,
-      Tags: ['#fps', '#fantasy', '#building']
-    },
-    {
-      Image:
-        'https://pluralsight.imgix.net/course-images/game-environment-concept-design-v2.jpg',
-      Title: 'Test',
-      Description: 'test beskriving 3',
-      Likes: 11,
-      Tags: ['#mmo', '#strategy', '#freeforall']
-    },
-    {
-      Image:
-        'https://cdn-learning.artstation.com/p/courses/covers/000/000/075/large/cover-1574847827.jpg?1574847827',
-      Title: 'Test',
-      Description: 'test beskriving 4',
-      Likes: 3,
-      Tags: ['#pvp', '#br', '#fps']
-    },
-    {
-      Image:
-        'https://i.pinimg.com/originals/81/c0/62/81c06269d414e8f929cbc68c21776a3b.jpg',
-      Title: 'Test',
-      Description: 'test beskriving 5',
-      Likes: 102,
-      Tags: ['#building', '#creative']
-    },
-    {
-      Image:
-        'https://blog.roblox.com/wp-content/uploads/2016/12/Catching-Fire.jpg',
-      Title: 'Test',
-      Description: 'ROBLOX',
-      Likes: 63,
-      Tags: ['#adventure', '#creative', '#building']
-    },
-  ];
+export function getUserRecommened(user) {
+  switch (user) {
+    case 'Marcus':
+      let recommendedListMarcus = [
+        {
+          listTitle: 'Recommended for you',
+          Image: 'https://cdn.80.lv/api/upload/content/e1/5d2c88a790e80.jpg',
+          Title: 'Roblox',
+          Description: 'Nummer 1 spelplattform i världen.  ',
+          Likes: 45,
+          Tags: ['#action', '#roleplay'],
+        },
+        {
+          Image: 'http://i.imgur.com/58lD2.jpg',
+          Title: 'Test',
+          Description: 'test beskriving 2',
+          Likes: 32,
+          Tags: ['#fps', '#fantasy', '#building'],
+        },
+        {
+          Image:
+            'https://pluralsight.imgix.net/course-images/game-environment-concept-design-v2.jpg',
+          Title: 'Test',
+          Description: 'test beskriving 3',
+          Likes: 11,
+          Tags: ['#mmo', '#strategy', '#freeforall'],
+        },
+        {
+          Image:
+            'https://cdn-learning.artstation.com/p/courses/covers/000/000/075/large/cover-1574847827.jpg?1574847827',
+          Title: 'Test',
+          Description: 'test beskriving 4',
+          Likes: 3,
+          Tags: ['#pvp', '#br', '#fps'],
+        },
+        {
+          Image:
+            'https://i.pinimg.com/originals/81/c0/62/81c06269d414e8f929cbc68c21776a3b.jpg',
+          Title: 'Test',
+          Description: 'test beskriving 5',
+          Likes: 102,
+          Tags: ['#building', '#creative'],
+        },
+        {
+          Image:
+            'https://blog.roblox.com/wp-content/uploads/2016/12/Catching-Fire.jpg',
+          Title: 'Test',
+          Description: 'ROBLOX',
+          Likes: 63,
+          Tags: ['#adventure', '#creative', '#building'],
+        },
+      ];
+      return recommendedListMarcus;
 
+    case 'Albin':
+      let recommendedListAlbin = [
+        {
+          listTitle: 'Recommended for you',
+          Image:
+            'https://i.pinimg.com/originals/81/c0/62/81c06269d414e8f929cbc68c21776a3b.jpg',
+          Title: 'Roblox',
+          Description: 'Nummer 1 spelplattform i världen.  ',
+          Likes: 12,
+          Tags: ['#roleplay'],
+        },
+        {
+          Image: 'http://i.imgur.com/58lD2.jpg',
+          Title: 'Test',
+          Description: 'test beskriving 2',
+          Likes: 42,
+          Tags: ['#fps', '#fantasy', '#building'],
+        },
+        {
+          Image:
+            'https://pluralsight.imgix.net/course-images/game-environment-concept-design-v2.jpg',
+          Title: 'Test',
+          Description: 'test beskriving 3',
+          Likes: 7,
+          Tags: ['#mmo', '#strategy', '#freeforall'],
+        },
+        {
+          Image:
+            'https://cdn-learning.artstation.com/p/courses/covers/000/000/075/large/cover-1574847827.jpg?1574847827',
+          Title: 'Test',
+          Description: 'test beskriving 4',
+          Likes: 3,
+          Tags: ['#pvp', '#br', '#fps'],
+        },
+        {
+          Image: 'http://i.imgur.com/58lD2.jpg',
+          Title: 'Test',
+          Description: 'test beskriving 5',
+          Likes: 3,
+          Tags: ['#building', '#creative'],
+        },
+        {
+          Image:
+            'https://blog.roblox.com/wp-content/uploads/2016/12/Catching-Fire.jpg',
+          Title: 'Test',
+          Description: 'ROBLOX',
+          Likes: 0,
+          Tags: ['#adventure', '#creative', '#building'],
+        },
+      ];
+      return recommendedListAlbin;
+
+    case 'Oscar':
+      let recommendedListOscar = [
+        {
+          listTitle: 'Recommended for you',
+          Image: 'http://i.imgur.com/58lD2.jpg',
+          Title: 'Roblox',
+          Description: 'Nummer 1 spelplattform i världen.  ',
+          Likes: 54,
+          Tags: ['#roleplay'],
+        },
+        {
+          Image: 'http://i.imgur.com/58lD2.jpg',
+          Title: 'Test',
+          Description: 'test beskriving 2',
+          Likes: 42,
+          Tags: ['#fps', '#fantasy', '#building'],
+        },
+        {
+          Image:
+            'https://pluralsight.imgix.net/course-images/game-environment-concept-design-v2.jpg',
+          Title: 'Test',
+          Description: 'test beskriving 3',
+          Likes: 7,
+          Tags: ['#mmo', '#strategy', '#freeforall'],
+        },
+        {
+          Image:
+            'https://cdn-learning.artstation.com/p/courses/covers/000/000/075/large/cover-1574847827.jpg?1574847827',
+          Title: 'Test',
+          Description: 'test beskriving 4',
+          Likes: 3,
+          Tags: ['#pvp', '#br', '#fps'],
+        },
+        {
+          Image: 'http://i.imgur.com/58lD2.jpg',
+          Title: 'Test',
+          Description: 'test beskriving 5',
+          Likes: 3,
+          Tags: ['#building', '#creative'],
+        },
+        {
+          Image:
+            'https://blog.roblox.com/wp-content/uploads/2016/12/Catching-Fire.jpg',
+          Title: 'Test',
+          Description: 'ROBLOX',
+          Likes: 0,
+          Tags: ['#adventure', '#creative', '#building'],
+        },
+      ];
+      return recommendedListOscar;
+
+    case 'Adam':
+      let recommendedListAdam = [
+        {
+          listTitle: 'Recommended for you',
+          Image:
+            'https://pluralsight.imgix.net/course-images/game-environment-concept-design-v2.jpg',
+          Title: 'Roblox',
+          Description: 'Nummer 1 spelplattform i världen.  ',
+          Likes: 2,
+          Tags: ['#roleplay'],
+        },
+        {
+          Image: 'http://i.imgur.com/58lD2.jpg',
+          Title: 'Test',
+          Description: 'test beskriving 2',
+          Likes: 42,
+          Tags: ['#fps', '#fantasy', '#building'],
+        },
+        {
+          Image:
+            'https://pluralsight.imgix.net/course-images/game-environment-concept-design-v2.jpg',
+          Title: 'Test',
+          Description: 'test beskriving 3',
+          Likes: 7,
+          Tags: ['#mmo', '#strategy', '#freeforall'],
+        },
+        {
+          Image:
+            'https://cdn-learning.artstation.com/p/courses/covers/000/000/075/large/cover-1574847827.jpg?1574847827',
+          Title: 'Test',
+          Description: 'test beskriving 4',
+          Likes: 3,
+          Tags: ['#pvp', '#br', '#fps'],
+        },
+        {
+          Image: 'http://i.imgur.com/58lD2.jpg',
+          Title: 'Test',
+          Description: 'test beskriving 5',
+          Likes: 3,
+          Tags: ['#building', '#creative'],
+        },
+        {
+          Image:
+            'https://blog.roblox.com/wp-content/uploads/2016/12/Catching-Fire.jpg',
+          Title: 'Test',
+          Description: 'ROBLOX',
+          Likes: 0,
+          Tags: ['#adventure', '#creative', '#building'],
+        },
+      ];
+      return recommendedListAdam;
+    default:
+      break;
+  }
+}
+
+export function getRecommendedGames(user) {
+  let recommendedList = getUserRecommened(user);
   return recommendedList;
 }
+
 export function getPopularGames() {
   let popularList = [
     {
@@ -59,7 +224,7 @@ export function getPopularGames() {
       Title: 'Test',
       Description: 'test beskriving 2',
       Likes: 21,
-      Tags: ["#action", "#roleplay"]
+      Tags: ['#action', '#roleplay'],
     },
     {
       Image:
@@ -67,7 +232,7 @@ export function getPopularGames() {
       Title: 'Test',
       Description: 'test beskriving 3',
       Likes: 13,
-      Tags: ['#fps', '#fantasy', '#building']
+      Tags: ['#fps', '#fantasy', '#building'],
     },
     {
       Image:
@@ -75,7 +240,7 @@ export function getPopularGames() {
       Title: 'Test',
       Description: 'test beskriving 4',
       Likes: 5,
-      Tags: ['#mmo', '#strategy', '#freeforall']
+      Tags: ['#mmo', '#strategy', '#freeforall'],
     },
     {
       Image:
@@ -83,7 +248,7 @@ export function getPopularGames() {
       Title: 'Test',
       Description: 'test beskriving 5',
       Likes: 8,
-      Tags: ['#pvp', '#br', '#fps']
+      Tags: ['#pvp', '#br', '#fps'],
     },
     {
       listTitle: 'Recommended for you',
@@ -91,7 +256,7 @@ export function getPopularGames() {
       Title: 'Test',
       Description: 'test beskriving 1',
       Likes: 211,
-      Tags: ['#building', '#creative']
+      Tags: ['#building', '#creative'],
     },
     {
       Image:
@@ -99,7 +264,7 @@ export function getPopularGames() {
       Title: 'Test',
       Description: 'ROBLOX',
       Likes: 32,
-      Tags: ['#adventure', '#creative', '#building']
+      Tags: ['#adventure', '#creative', '#building'],
     },
   ];
 
@@ -115,7 +280,7 @@ export function getFriendsPlaying() {
       Title: 'Test',
       Description: 'ROBLOX',
       Likes: 61,
-      Tags: ["#action", "#roleplay"]
+      Tags: ['#action', '#roleplay'],
     },
     {
       Image:
@@ -123,21 +288,21 @@ export function getFriendsPlaying() {
       Title: 'Test',
       Description: 'test beskriving 4',
       Likes: 22,
-      Tags: ['#fps', '#fantasy', '#building']
+      Tags: ['#fps', '#fantasy', '#building'],
     },
     {
       Image: 'http://i.imgur.com/58lD2.jpg',
       Title: 'Test',
       Description: 'test beskriving 2',
       Likes: 15,
-      Tags: ['#mmo', '#strategy', '#freeforall']
+      Tags: ['#mmo', '#strategy', '#freeforall'],
     },
     {
       Image: 'https://cdn.80.lv/api/upload/content/e1/5d2c88a790e80.jpg',
       Title: 'Test',
       Description: 'test beskriving 1',
       Likes: 34,
-      Tags: ['#pvp', '#br', '#fps']
+      Tags: ['#pvp', '#br', '#fps'],
     },
 
     {
@@ -146,7 +311,7 @@ export function getFriendsPlaying() {
       Title: 'Test',
       Description: 'test beskriving 3',
       Likes: 16,
-      Tags: ['#building', '#creative']
+      Tags: ['#building', '#creative'],
     },
     {
       Image:
@@ -154,7 +319,7 @@ export function getFriendsPlaying() {
       Title: 'Test',
       Description: 'test beskriving 5',
       Likes: 85,
-      Tags: ['#adventure', '#creative', '#building']
+      Tags: ['#adventure', '#creative', '#building'],
     },
   ];
   return friendsPlayingList;
@@ -163,21 +328,21 @@ export function getFriendsPlaying() {
 export function toggleFriendsAside() {
   const friends = document.getElementById('friends');
   const newFriends = document.getElementById('newFriends');
-  if (friends.style.display === "none") {
-    friends.style.display = "block";
-    newFriends.style.display = "none";
+  if (friends.style.display === 'none') {
+    friends.style.display = 'block';
+    newFriends.style.display = 'none';
   } else {
-    friends.style.display = "none";
+    friends.style.display = 'none';
   }
 }
 
 export function toggleFriendsNew() {
   const friends = document.getElementById('friends');
   const newFriends = document.getElementById('newFriends');
-  if (newFriends.style.display === "none") {
-    newFriends.style.display = "block";
-    friends.style.display = "none";
+  if (newFriends.style.display === 'none') {
+    newFriends.style.display = 'block';
+    friends.style.display = 'none';
   } else {
-    newFriends.style.display = "none";
+    newFriends.style.display = 'none';
   }
 }

@@ -36,7 +36,13 @@ const Simple = ({ currentList, deviceType }) => {
           return (
             <div>
               <div className='container pb-4'>
-                <Card picture={obj.Image} text={obj.Description} likes={obj.Likes} title= {obj.Title} tags={obj.Tags}/>
+                <Card
+                  picture={obj.Image}
+                  text={obj.Description}
+                  likes={obj.Likes}
+                  title={obj.Title}
+                  tags={obj.Tags}
+                />
               </div>{' '}
             </div>
           );
