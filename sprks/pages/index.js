@@ -9,44 +9,51 @@ import Hamburger from '../components/hamburger';
 import NewFriends from '../components/newFriends';
 import userProfile from '../components/userProfile';
 import CardSlider from '../components/slider/cardSlider';
-
+import { useState } from 'react';
 import { PrismaClient } from '@prisma/client';
 
-// const prisma = new PrismaClient();
+const prisma = new PrismaClient();
 
-// async function test() {
-//   const allUsers = await prisma.users.findMany();
-//   console.log(allUsers);
-//   return allUsers;
-// }
+async function test() {
+  const allUsers = await prisma.user.findMany();
+  return allUsers;
+}
 
-// export async function getServerSideProps() {
-//   // const allUsers = await prisma.users.findMany();
-//   // console.log(allUsers);
-//   const h = await test();
-//   return {
-//     props: {
-//       h
-//     }
-//   }
-// }
+export async function getServerSideProps() {
+  const userProps = await test();
+  console.log(userProps);
 
+  return {
+    props: {
+      userProps,
+    },
+  };
+}
 
-export default function Home({ deviceType }) {
+export default function Home({ userProps, deviceType }) {
+  const [formData, setFormData] = useState({});
+  const [users, setUsers] = useState(userProps);
+
+  async function saveMovie(e) {
+    e.preventDefault();
+    setUsers([...users, formData]);
+    const response = await fetch('/api/users', {
+      method: 'POST',
+      body: JSON.stringify(formData),
+    });
+
+    return await response.json();
+  }
+
   return (
     <div className='bg-black'>
       <div className='fixed top-0 z-50 w-full text-white body-font bg-gradient-to-b from-black'>
         <div className='flex flex-col flex-wrap items-center p-5 px-16 md:flex-row'>
           <a className='flex items-center mb-4 font-medium text-white title-font md:mb-0'>
-            <img
-              src='/sprks-logo.png'
-              className='w-24'
-              alt=''
-            ></img>
+            <img src='/sprks-logo.png' className='w-24' alt=''></img>
           </a>
           <ul className='flex-row hidden w-1/2 ml-12 space-x-3 text-sm lg:flex'>
             <li className='font-semibold'>Home</li>
-            <li>Games</li>
             <li>Friends</li>
             <li>Popular</li>
             <li></li>
@@ -70,8 +77,7 @@ export default function Home({ deviceType }) {
               stroke='currentColor'
               viewBox='0 0 24 24'
               xmlns='http://www.w3.org/2000/svg'
-            > 
-            
+            >
               <path
                 strokeLinecap='round'
                 strokeLinejoin='round'
@@ -79,7 +85,7 @@ export default function Home({ deviceType }) {
                 d='M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7'
               ></path>
             </svg>
-            <svg 
+            <svg
               className='w-6 h-6'
               fill='currentColor'
               viewBox='0 0 20 20'
@@ -91,12 +97,7 @@ export default function Home({ deviceType }) {
               onClick={() => toggleFriendsNew()}
               className='flex items-center'
             >
-            
-              <img
-                src='/profile-logo.png'
-                alt=''
-                className='w-9 h-1/2'
-              ></img>
+              <img src='/profile-logo.png' alt='' className='w-9 h-1/2'></img>
               {/* <svg
                 className='w-5 h-5 text-white stroke-current'
                 fill='currentColor'
@@ -109,9 +110,8 @@ export default function Home({ deviceType }) {
                   clip-rule='evenodd'
                 ></path>
               </svg> */}
- 
             </button>
-            <Hamburger  />
+            <Hamburger />
           </nav>
         </div>
       </div>
@@ -124,42 +124,43 @@ export default function Home({ deviceType }) {
 
             <div
               id='newFriends'
-              className='flex-col float-right w-3/12 py-12 m-auto mr-0 mt-0 space-y-4'
-              style={{display: 'none'}}
+              className='flex-col float-right w-3/12 py-12 m-auto mt-0 mr-0 space-y-4'
+              style={{ display: 'none' }}
             >
               <NewFriends />
             </div>
             <div
               id='friends'
-              className='flex-col float-right w-3/12 py-12 m-auto mr-0 mt-0 space-y-4'
-              style={{display: 'none'}}
+              className='flex-col float-right w-3/12 py-12 m-auto mt-0 mr-0 space-y-4'
+              style={{ display: 'none' }}
             >
               <Friends />
-            
             </div>
           </div>
         </div>
         <div className='absolute bottom-0 w-full h-64 bg-gradient-to-t from-black'></div>
         <div className='absolute bottom-0 w-full h-64 bg-gradient-to-t from-black'></div>
-        <div className='object-cover w-1/2 h-1/2 m-auto'>
-        <video
-         
-         className='object-cover md:w-auto h-full '
-         autoPlay
-         muted
-         loop
-       >
-         <source
-          id='video'
-           className='object-contain h-screen'
-           src='https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1280_10MG.mp4'
-           height='10'
-           type='video/mp4'
-         ></source>
-       </video>
-
+        <div className='object-cover w-1/2 m-auto h-1/2'>
+          <video className='object-cover h-full md:w-auto ' autoPlay muted loop>
+            <source
+              id='video'
+              className='object-contain h-screen'
+              src='https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1280_10MG.mp4'
+              height='10'
+              type='video/mp4'
+            ></source>
+          </video>
         </div>
-        
+
+        {/* Database test */}
+        <div className='m-auto text-white bg-gray'>
+          <h1>Database content:</h1>
+          {users.map((user) => (
+            <li key={user.id}>
+              {user.name} : {user.email}
+            </li>
+          ))}
+        </div>
 
         <div className='container mx-auto'>
           <div className='mb-12'>
@@ -172,8 +173,31 @@ export default function Home({ deviceType }) {
             <CardSlider listType={'popularGames'} />
           </div>
         </div>
+
+        <form className='block mx-auto my-24' onSubmit={saveMovie}>
+          <input
+            type='text'
+            placeholder='name'
+            name='name'
+            onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+          />
+          <input
+            type='text'
+            placeholder='email'
+            name='email'
+            onChange={(e) =>
+              setFormData({ ...formData, email: e.target.value })
+            }
+          />
+          <button className='text-black bg-white' type='submit'>
+            Add user
+          </button>
+        </form>
       </div>
-    <script src="https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js" defer></script>
+      <script
+        src='https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js'
+        defer
+      ></script>
     </div>
   );
 }
