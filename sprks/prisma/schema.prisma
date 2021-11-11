@@ -1,31 +1,12 @@
-generator client {
-  provider = "prisma-client-js"
-}
+// This is your Prisma schema file,
+// learn more about it in the docs: https://pris.ly/d/prisma-schema
 
 datasource db {
-  provider = "postgresql"
+  provider = "mongodb"
   url      = env("DATABASE_URL")
 }
 
-model games {
-  id          Int     @id @default(autoincrement())
-  name        String  @db.VarChar(50)
-  game_type   String  @db.VarChar(50)
-  description String? @db.VarChar(50)
-  likes       likes[]
-}
-
-model likes {
-  like_id   Int    @id @default(autoincrement())
-  user_id   Int
-  game_type String @db.VarChar(50)
-  game_id   Int
-  games     games  @relation(fields: [game_id], references: [id], onDelete: NoAction, onUpdate: NoAction)
-  users     users  @relation(fields: [user_id], references: [user_id], onDelete: NoAction, onUpdate: NoAction)
-}
-
-model users {
-  user_id  Int     @id @default(autoincrement())
-  username String  @db.VarChar(50)
-  likes    likes[]
+generator client {
+  provider        = "prisma-client-js"
+  previewFeatures = ["mongoDb"]
 }

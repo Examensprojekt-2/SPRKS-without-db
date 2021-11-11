@@ -10,6 +10,27 @@ import NewFriends from '../components/newFriends';
 import userProfile from '../components/userProfile';
 import CardSlider from '../components/slider/cardSlider';
 
+import { PrismaClient } from '@prisma/client';
+
+// const prisma = new PrismaClient();
+
+// async function test() {
+//   const allUsers = await prisma.users.findMany();
+//   console.log(allUsers);
+//   return allUsers;
+// }
+
+// export async function getServerSideProps() {
+//   // const allUsers = await prisma.users.findMany();
+//   // console.log(allUsers);
+//   const h = await test();
+//   return {
+//     props: {
+//       h
+//     }
+//   }
+// }
+
 
 export default function Home({ deviceType }) {
   return (
