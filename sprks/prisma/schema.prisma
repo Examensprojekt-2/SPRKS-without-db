@@ -1,12 +1,19 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
+generator client {
+  provider = "prisma-client-js"
+}
 
 datasource db {
-  provider = "mongodb"
+  provider = "sqlserver"
   url      = env("DATABASE_URL")
 }
 
-generator client {
-  provider        = "prisma-client-js"
-  previewFeatures = ["mongoDb"]
+/// The underlying table does not contain a valid unique identifier and can therefore currently not be handled by the Prisma Client.
+model Persons {
+  PersonID  Int?
+  LastName  String? @db.VarChar(255)
+  FirstName String? @db.VarChar(255)
+  Address   String? @db.VarChar(255)
+  City      String? @db.VarChar(255)
+
+  @@ignore
 }
