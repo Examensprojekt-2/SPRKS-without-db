@@ -12,7 +12,7 @@ import CardSlider from '../components/slider/cardSlider';
 
 import { PrismaClient } from '@prisma/client';
 
-// const prisma = new PrismaClient();
+const prisma = new PrismaClient();
 
 // async function test() {
 //   const allUsers = await prisma.users.findMany();
@@ -31,8 +31,28 @@ import { PrismaClient } from '@prisma/client';
 //   }
 // }
 
+export async function getServerSideProps(context) {
+  const allUsers = await prisma.persons.findMany();
+  console.log("HEJJSJJ");
+  console.log(allUsers);
+
+  return {
+    props: {allUsers} // will be passed to the page component as props
+  }
+}
+
 
 export default function Home({ deviceType }) {
+
+  const createUserAndPost = prisma.persons.create({
+    data: {
+      LastName: 'Larsson',
+      FirstName: 'Lars',
+      Address: 'Gatan 2',
+      City: 'Malmö'
+    },
+  })
+
   return (
     <div className='bg-black'>
       <div className='fixed top-0 z-50 w-full text-white body-font bg-gradient-to-b from-black'>
