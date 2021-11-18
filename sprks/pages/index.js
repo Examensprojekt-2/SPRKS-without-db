@@ -10,7 +10,47 @@ import NewFriends from '../components/newFriends';
 import userProfile from '../components/userProfile';
 import CardSlider from '../components/slider/cardSlider';
 
+import { PrismaClient } from '@prisma/client';
+
+// const prisma = new PrismaClient();
+
+// async function test() {
+//   const allUsers = await prisma.users.findMany();
+//   console.log(allUsers);
+//   return allUsers;
+// }
+
+// export async function getServerSideProps() {
+//   // const allUsers = await prisma.users.findMany();
+//   // console.log(allUsers);
+//   const h = await test();
+//   return {
+//     props: {
+//       h
+//     }
+//   }
+// }
+
+// export async function getServerSideProps(context) {
+//   const allUsers = await prisma.Users.findMany();
+//   console.log('HEJJSJJ');
+//   console.log(allUsers);
+
+//   return {
+//     props: { allUsers }, // will be passed to the page component as props
+//   };
+// }
+
 export default function Home({ deviceType }) {
+  // const createUserAndPost = prisma.persons.create({
+  //   data: {
+  //     LastName: 'Larsson',
+  //     FirstName: 'Lars',
+  //     Address: 'Gatan 2',
+  //     City: 'Malmö'
+  //   },
+  // })
+
   return (
     <div className='bg-black'>
       <div className='fixed top-0 z-50 w-full text-white bg-black body-font'>
