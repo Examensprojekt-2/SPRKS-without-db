@@ -10,14 +10,27 @@ import NewFriends from '../../components/newFriends';
 import userProfile from '../../components/userProfile';
 import CardSlider from '../../components/slider/cardSlider';
 import { useRouter } from 'next/router';
+import { getUserById } from '../api/users';
 
-export default function User({ deviceType }) {
+export async function getServerSideProps() {
+  const userById = await getUserById(1);
+  return {
+    props: {
+      userById,
+    },
+  };
+}
+
+export default function User({ userById, deviceType }) {
   const router = useRouter();
   const { user } = router.query;
 
   return (
     <div className='bg-black'>
-      <div>{user}</div>
+      <div className='text-white'>
+        {console.log(userById)}
+        {userById[0].name} + password {userById[0].password}
+      </div>
       <div className='fixed top-0 z-50 w-full text-white body-font bg-gradient-to-b from-black'>
         <div className='flex flex-col flex-wrap items-center p-5 px-16 md:flex-row'>
           <a className='flex items-center mb-4 font-medium text-white title-font md:mb-0'>

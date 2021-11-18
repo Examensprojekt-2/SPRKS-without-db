@@ -9,39 +9,18 @@ import Hamburger from '../components/hamburger';
 import NewFriends from '../components/newFriends';
 import userProfile from '../components/userProfile';
 import CardSlider from '../components/slider/cardSlider';
+import { getUsers } from '../pages/api/users';
 
-import { PrismaClient } from '@prisma/client';
+export async function getServerSideProps() {
+  let userProps = await getUsers();
+  return {
+    props: {
+      userProps,
+    },
+  };
+}
 
-// const prisma = new PrismaClient();
-
-// async function test() {
-//   const allUsers = await prisma.users.findMany();
-//   console.log(allUsers);
-//   return allUsers;
-// }
-
-// export async function getServerSideProps() {
-//   // const allUsers = await prisma.users.findMany();
-//   // console.log(allUsers);
-//   const h = await test();
-//   return {
-//     props: {
-//       h
-//     }
-//   }
-// }
-
-// export async function getServerSideProps(context) {
-//   const allUsers = await prisma.Users.findMany();
-//   console.log('HEJJSJJ');
-//   console.log(allUsers);
-
-//   return {
-//     props: { allUsers }, // will be passed to the page component as props
-//   };
-// }
-
-export default function Home({ deviceType }) {
+export default function Home({ userProps, deviceType }) {
   // const createUserAndPost = prisma.persons.create({
   //   data: {
   //     LastName: 'Larsson',
@@ -59,46 +38,23 @@ export default function Home({ deviceType }) {
             <img src='/sprks-logo.png' className='w-24' alt=''></img>
           </a>
           <div className='flex justify-center w-screen h-screen text-center text-white bg-black'>
-            <button className='mr-4'>
-              <a href='http://localhost:3000/loggedIn/Marcus'>
-                <img
-                  class='inline object-cover w-32 h-32 mr-2 rounded-full'
-                  src='https://images.pexels.com/photos/2589653/pexels-photo-2589653.jpeg?auto=compress&cs=tinysrgb&h=650&w=940'
-                  alt='Profile image'
-                />
-                <h3>Marcus</h3>
-              </a>
-            </button>
-            <button className='mr-4'>
-              <a href='http://localhost:3000/loggedIn/Oscar'>
-                <img
-                  class='inline object-cover w-32 h-32 mr-2 rounded-full'
-                  src='https://images.pexels.com/photos/2589653/pexels-photo-2589653.jpeg?auto=compress&cs=tinysrgb&h=650&w=940'
-                  alt='Profile image'
-                />
-                <h3>Oscar</h3>
-              </a>
-            </button>
-            <button className='mr-4'>
-              <a href='http://localhost:3000/loggedIn/Albin'>
-                <img
-                  class='inline object-cover w-32 h-32 mr-2 rounded-full'
-                  src='https://images.pexels.com/photos/2589653/pexels-photo-2589653.jpeg?auto=compress&cs=tinysrgb&h=650&w=940'
-                  alt='Profile image'
-                />
-                <h3>Albin</h3>
-              </a>
-            </button>
-            <button className=''>
-              <a href='http://localhost:3000/loggedIn/Adam'>
-                <img
-                  class='inline object-cover w-32 h-32 mr-2 rounded-full'
-                  src='https://images.pexels.com/photos/2589653/pexels-photo-2589653.jpeg?auto=compress&cs=tinysrgb&h=650&w=940'
-                  alt='Profile image'
-                />
-                <h3>Adam</h3>
-              </a>
-            </button>
+            {userProps &&
+              userProps.map((user) => {
+                return (
+                  <button className='mr-4'>
+                    <a href={'http://localhost:3000/loggedIn/' + user.name}>
+                      <img
+                        class='inline object-cover w-32 h-32 mr-2 rounded-full'
+                        src='https://images.pexels.com/photos/2589653/pexels-photo-2589653.jpeg?auto=compress&cs=tinysrgb&h=650&w=940'
+                        alt='Profile image'
+                      />
+                      <h3>
+                        {user.name} +, {user.age} år
+                      </h3>
+                    </a>
+                  </button>
+                );
+              })}
           </div>
         </div>
       </div>

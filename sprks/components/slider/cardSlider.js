@@ -29,7 +29,7 @@ const CardSlider = ({ listType, user, deviceType }) => {
   }
 
   let currentList = getRightList(listType, user);
-  console.log(currentList);
+  // console.log(currentList);
   return (
     <Fragment>
       <Section>
