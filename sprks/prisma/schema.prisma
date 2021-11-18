@@ -7,11 +7,36 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+model Friends {
+  friendshipId                  Int    @id(map: "PK__Friends__1E39AEF2F58FF937")
+  userId                        Int?
+  friendId                      Int?
+  Users_Friends_friendIdToUsers Users? @relation("Friends_friendIdToUsers", fields: [friendId], references: [Id], onDelete: NoAction, onUpdate: NoAction, map: "FK__Friends__friendI__6EF57B66")
+  Users_Friends_userIdToUsers   Users? @relation("Friends_userIdToUsers", fields: [userId], references: [Id], onDelete: NoAction, onUpdate: NoAction, map: "FK__Friends__userId__6E01572D")
+}
 
-model Persons {
-  PersonID  Int @id @default(autoincrement())
-  LastName  String? @db.VarChar(255)
-  FirstName String? @db.VarChar(255)
-  Address   String? @db.VarChar(255)
-  City      String? @db.VarChar(255)
+model Game {
+  Id    Int     @id(map: "PK__Game__3214EC07B5D890BB") @default(autoincrement())
+  name  String? @db.VarChar(255)
+  genre String? @db.VarChar(255)
+  Likes Likes[]
+}
+
+model Likes {
+  userId Int
+  gameId Int
+  Game   Game  @relation(fields: [gameId], references: [Id], onUpdate: NoAction, map: "FK__Likes__gameId__72C60C4A")
+  Users  Users @relation(fields: [userId], references: [Id], onUpdate: NoAction, map: "FK__Likes__userId__71D1E811")
+
+  @@id([userId, gameId], map: "PK__Likes__F63317BAE03E28AE")
+}
+
+model Users {
+  Id                              Int       @id(map: "PK__Users__3214EC071E5778CD") @default(autoincrement())
+  name                            String?   @db.VarChar(255)
+  password                        String?   @db.VarChar(255)
+  age                             Int?
+  Friends_Friends_friendIdToUsers Friends[] @relation("Friends_friendIdToUsers")
+  Friends_Friends_userIdToUsers   Friends[] @relation("Friends_userIdToUsers")
+  Likes                           Likes[]
 }
