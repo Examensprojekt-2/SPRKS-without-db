@@ -21,7 +21,7 @@ const responsive = {
 
 // Because this is an inframe, so the SSR mode doesn't not do well here.
 // It will work on real devices.
-const Simple = ({ currentList, deviceType,gameLikes }) => {
+const Simple = ({ currentList, deviceType, gameLikes }) => {
   return (
     <div>
       <h1 className='text-white'>{currentList[0].listTitle}</h1>

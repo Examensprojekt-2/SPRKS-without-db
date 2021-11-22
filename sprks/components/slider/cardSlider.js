@@ -12,6 +12,7 @@ import {
 } from '../../functions/functions';
 
 const CardSlider = ({ listType, user, gameLikes, deviceType }) => {
+  // TODO - Fetch from db
   function getRightList(type, user) {
     switch (type) {
       case 'recommended':
@@ -29,13 +30,16 @@ const CardSlider = ({ listType, user, gameLikes, deviceType }) => {
   }
 
   let currentList = getRightList(listType, user);
-  // console.log(currentList);
   return (
     <Fragment>
       <Section>
         {/* Show list of games if currentlist is loaded */}
         {currentList ? (
-          <Simple currentList={currentList} deviceType={deviceType} gameLikes={gameLikes} />
+          <Simple
+            currentList={currentList}
+            deviceType={deviceType}
+            gameLikes={gameLikes}
+          />
         ) : null}
       </Section>
     </Fragment>
