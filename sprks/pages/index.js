@@ -1,5 +1,5 @@
 import Head from 'next/head';
-import Image from 'next/image';
+import Link from 'next/link';
 import styles from '../styles/Home.module.css';
 import Friends from '../components/friends';
 import { toggleFriendsNew } from '../functions/functions';
@@ -41,8 +41,13 @@ export default function Home({ userProps, deviceType }) {
             {userProps &&
               userProps.map((user) => {
                 return (
-                  <button className='mr-4'>
-                    <a href={'http://localhost:3000/loggedIn/' + user.name}>
+                  <Link
+                    href={{
+                      pathname: 'http://localhost:3000/loggedIn/[id]',
+                      query: { id: user.Id },
+                    }}
+                  >
+                    <button key={user.Id} className='mr-4'>
                       <img
                         class='inline object-cover w-32 h-32 mr-2 rounded-full'
                         src='https://images.pexels.com/photos/2589653/pexels-photo-2589653.jpeg?auto=compress&cs=tinysrgb&h=650&w=940'
@@ -51,8 +56,8 @@ export default function Home({ userProps, deviceType }) {
                       <h3>
                         {user.name} +, {user.age} år
                       </h3>
-                    </a>
-                  </button>
+                    </button>
+                  </Link>
                 );
               })}
           </div>

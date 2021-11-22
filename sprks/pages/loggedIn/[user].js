@@ -4,32 +4,53 @@ import styles from '../../styles/Home.module.css';
 import Friends from '../../components/friends';
 import { toggleFriendsNew } from '../../functions/functions';
 import Card from '../../components/card';
+import { GetServerSideProps, NextPage } from 'next';
 
 import Hamburger from '../../components/hamburger';
 import NewFriends from '../../components/newFriends';
 import userProfile from '../../components/userProfile';
 import CardSlider from '../../components/slider/cardSlider';
 import { useRouter } from 'next/router';
-import { getUserById } from '../api/users';
+import { getGames, getUserById } from '../api/users';
 
-export async function getServerSideProps() {
-  const userById = await getUserById(1);
+// export async function getServerSideProps(context) {
+//   console.log('context' + context);
+//   const { id } = context.query;
+//   console.log('context id' + id);
+//   const userById = await getUserById(id);
+//   console.log(`Fetched : ${userById}`);
+
+//   return {
+//     props: {
+//       userById,
+//     },
+//   };
+// }
+
+export async function getServerSideProps(context) {
+  // Fetch the current unit from the API with the unit ID
+  console.log('test context ' + context.params?.user);
+  const userById = await getUserById(parseInt(context.params?.user));
+  console.log(userById);
+
+  const allGames = await getGames();
+
   return {
-    props: {
-      userById,
-    },
+    props: { user: userById, games: allGames },
   };
 }
 
-export default function User({ userById, deviceType }) {
-  const router = useRouter();
-  const { user } = router.query;
+export default function User({ user, games, deviceType }) {
+  // const router = useRouter();
+  // const { user } = router.query;
 
+  let currentUser = user[0];
   return (
     <div className='bg-black'>
       <div className='text-white'>
-        {console.log(userById)}
-        {userById[0].name} + password {userById[0].password}
+        {console.log(currentUser)}
+        {console.log(games)}
+        {/* {userById[0].name} + password {userById[0].password} */}
       </div>
       <div className='fixed top-0 z-50 w-full text-white body-font bg-gradient-to-b from-black'>
         <div className='flex flex-col flex-wrap items-center p-5 px-16 md:flex-row'>
@@ -112,7 +133,7 @@ export default function User({ userById, deviceType }) {
               className='flex-col float-right w-3/12 py-12 m-auto mt-0 mr-0 space-y-4'
               style={{ display: 'none' }}
             >
-              <NewFriends user={user} />
+              {/* <NewFriends user={user} /> */}
             </div>
             <div
               id='friends'

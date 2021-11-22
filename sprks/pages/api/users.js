@@ -7,7 +7,14 @@ export async function getUsers() {
   return userProps;
 }
 
+export async function getGames() {
+  const Game = await prisma.game.findMany();
+  console.log(Game);
+  return Game;
+}
+
 export async function getUserById(idProps) {
+  console.log('idprops:' + idProps);
   const userProps = await prisma.users.findMany({
     where: {
       Id: idProps,
