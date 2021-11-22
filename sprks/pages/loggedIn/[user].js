@@ -10,22 +10,10 @@ import Hamburger from '../../components/hamburger';
 import NewFriends from '../../components/newFriends';
 import userProfile from '../../components/userProfile';
 import CardSlider from '../../components/slider/cardSlider';
+import { getLikes, getLikesByGameId } from '../api/likes';
+
 import { useRouter } from 'next/router';
 import { getGames, getUserById } from '../api/users';
-
-// export async function getServerSideProps(context) {
-//   console.log('context' + context);
-//   const { id } = context.query;
-//   console.log('context id' + id);
-//   const userById = await getUserById(id);
-//   console.log(`Fetched : ${userById}`);
-
-//   return {
-//     props: {
-//       userById,
-//     },
-//   };
-// }
 
 export async function getServerSideProps(context) {
   // Fetch the current unit from the API with the unit ID
@@ -34,22 +22,29 @@ export async function getServerSideProps(context) {
   console.log(userById);
 
   const allGames = await getGames();
-
+  const likes = await getLikes();
+  const gameLikes = await getLikesByGameId();
   return {
-    props: { user: userById, games: allGames },
+    props: {
+      user: userById,
+      games: allGames,
+      likes,
+      gameLikes,
+    },
   };
 }
 
-export default function User({ user, games, deviceType }) {
+export default function User({ user, gameLikes, deviceType }) {
   // const router = useRouter();
   // const { user } = router.query;
-
   let currentUser = user[0];
+  let likedGames = gameLikes.length;
   return (
     <div className='bg-black'>
       <div className='text-white'>
         {console.log(currentUser)}
-        {console.log(games)}
+        {console.log(likedGames)}
+        {/* {console.log(games)} */}
         {/* {userById[0].name} + password {userById[0].password} */}
       </div>
       <div className='fixed top-0 z-50 w-full text-white body-font bg-gradient-to-b from-black'>
@@ -140,7 +135,7 @@ export default function User({ user, games, deviceType }) {
               className='flex-col float-right w-3/12 py-12 m-auto mt-0 mr-0 space-y-4'
               style={{ display: 'none' }}
             >
-              <Friends user={user} />
+              {/* <Friends user={user} /> */}
             </div>
           </div>
         </div>
@@ -163,7 +158,8 @@ export default function User({ user, games, deviceType }) {
             <CardSlider
               className='mb-16'
               listType={'recommended'}
-              user={user}
+              user={user[0].name}
+              gameLikes={likedGames}
             />
           </div>
           <div className='mb-12'>

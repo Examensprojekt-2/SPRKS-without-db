@@ -11,7 +11,7 @@ import {
   getRecommendedGames,
 } from '../../functions/functions';
 
-const CardSlider = ({ listType, user, deviceType }) => {
+const CardSlider = ({ listType, user, gameLikes, deviceType }) => {
   function getRightList(type, user) {
     switch (type) {
       case 'recommended':
@@ -35,7 +35,7 @@ const CardSlider = ({ listType, user, deviceType }) => {
       <Section>
         {/* Show list of games if currentlist is loaded */}
         {currentList ? (
-          <Simple currentList={currentList} deviceType={deviceType} />
+          <Simple currentList={currentList} deviceType={deviceType} gameLikes={gameLikes} />
         ) : null}
       </Section>
     </Fragment>

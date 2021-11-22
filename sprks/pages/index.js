@@ -10,25 +10,20 @@ import NewFriends from '../components/newFriends';
 import userProfile from '../components/userProfile';
 import CardSlider from '../components/slider/cardSlider';
 import { getUsers } from '../pages/api/users';
+import { getLikes } from '../pages/api/likes';
 
 export async function getServerSideProps() {
   let userProps = await getUsers();
+  let likes = await getLikes();
   return {
     props: {
       userProps,
+      likes
     },
   };
 }
 
 export default function Home({ userProps, deviceType }) {
-  // const createUserAndPost = prisma.persons.create({
-  //   data: {
-  //     LastName: 'Larsson',
-  //     FirstName: 'Lars',
-  //     Address: 'Gatan 2',
-  //     City: 'Malmö'
-  //   },
-  // })
 
   return (
     <div className='bg-black'>
