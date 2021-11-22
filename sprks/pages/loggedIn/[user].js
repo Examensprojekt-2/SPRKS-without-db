@@ -9,19 +9,26 @@ import Hamburger from '../../components/hamburger';
 import NewFriends from '../../components/newFriends';
 import userProfile from '../../components/userProfile';
 import CardSlider from '../../components/slider/cardSlider';
+
+
 import { useRouter } from 'next/router';
 import { getUserById } from '../api/users';
+import { getLikes, getLikesByGameId } from '../api/likes';
 
 export async function getServerSideProps() {
   const userById = await getUserById(1);
+  const likes = await getLikes();
+  const gameLikes = await getLikesByGameId();
   return {
     props: {
       userById,
+      likes,
+      gameLikes
     },
   };
 }
 
-export default function User({ userById, deviceType }) {
+export default function User({ userById, gameLikes, deviceType }) {
   const router = useRouter();
   const { user } = router.query;
 
@@ -143,6 +150,7 @@ export default function User({ userById, deviceType }) {
               className='mb-16'
               listType={'recommended'}
               user={user}
+              gameLikes={gameLikes}
             />
           </div>
           <div className='mb-12'>

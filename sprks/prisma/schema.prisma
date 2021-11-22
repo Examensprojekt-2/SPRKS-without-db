@@ -8,11 +8,12 @@ datasource db {
 }
 
 model Friends {
-  friendshipId                  Int    @id(map: "PK__Friends__1E39AEF2F58FF937")
-  userId                        Int?
-  friendId                      Int?
-  Users_Friends_friendIdToUsers Users? @relation("Friends_friendIdToUsers", fields: [friendId], references: [Id], onDelete: NoAction, onUpdate: NoAction, map: "FK__Friends__friendI__6EF57B66")
-  Users_Friends_userIdToUsers   Users? @relation("Friends_userIdToUsers", fields: [userId], references: [Id], onDelete: NoAction, onUpdate: NoAction, map: "FK__Friends__userId__6E01572D")
+  userId                        Int
+  friendId                      Int
+  Users_Friends_friendIdToUsers Users @relation("Friends_friendIdToUsers", fields: [friendId], references: [Id], onUpdate: NoAction, map: "FK__Friends__friendI__7A672E12")
+  Users_Friends_userIdToUsers   Users @relation("Friends_userIdToUsers", fields: [userId], references: [Id], onUpdate: NoAction, map: "FK__Friends__userId__797309D9")
+
+  @@id([userId, friendId], map: "PK__Friends__AD3FCA8EA20BD319")
 }
 
 model Game {
