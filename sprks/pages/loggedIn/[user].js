@@ -21,14 +21,8 @@ export async function getServerSideProps(context) {
 
   // returns an array of game objects.
   const games = await getGames();
-  const friendsList = await getFriends()
-  return {
-    props: {
-      userById,
-      likes,
-      gameLikes,
-      games,
-      friendsList
+  const friendsList = await getFriends();
+
   const gamesArray = [];
 
   // loop through games, and call getLikesByGameId with the game id for each.
@@ -49,12 +43,17 @@ export async function getServerSideProps(context) {
     props: {
       userById,
       gamesArray,
+      friendsList,
     },
   };
 }
 
-export default function User({ userById, gameLikes, deviceType, friendsList }) {
-export default function User({ userById, gamesArray, deviceType }) {
+export default function User({
+  userById,
+  gamesArray,
+  friendsList,
+  deviceType,
+}) {
   const router = useRouter();
   const { user } = router.query;
 
@@ -152,13 +151,12 @@ export default function User({ userById, gamesArray, deviceType }) {
               className='flex-col float-right w-3/12 py-12 m-auto mt-0 mr-0 space-y-4'
               style={{ display: 'none' }}
             >
-              <Friends 
-              user={user} 
-              friendsList={friendsList}/>
-              {/* {console.log(friendsList)} */}
+              <Friends user={user} friendsList={friendsList} />
+              {console.log(friendsList)}
             </div>
           </div>
         </div>
+        +
         <div className='absolute bottom-0 w-full h-64 bg-gradient-to-t from-black'></div>
         <div className='absolute bottom-0 w-full h-64 bg-gradient-to-t from-black'></div>
         <div className='object-cover w-1/2 m-auto h-1/2'>
@@ -172,7 +170,6 @@ export default function User({ userById, gamesArray, deviceType }) {
             ></source>
           </video>
         </div>
-
         <div className='container mx-auto'>
           {/* <div className='mb-12'>
             <CardSlider
