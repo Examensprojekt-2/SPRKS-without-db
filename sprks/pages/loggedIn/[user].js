@@ -15,10 +15,11 @@ import { getGames, getUserById } from '../api/users';
 import { getLikes, getLikesByGameId } from '../api/likes';
 import { getFriends } from '../api/friends';
 
-export async function getServerSideProps() {
-  const userById = await getUserById(1);
+export async function getServerSideProps(context) {
+  const userById = await getUserById(parseInt(context.params?.user));
   const likes = await getLikes();
-  const gameLikes = await getLikesByGameId();
+
+  // returns an array of game objects.
   const games = await getGames();
   const friendsList = await getFriends()
   return {
@@ -28,11 +29,32 @@ export async function getServerSideProps() {
       gameLikes,
       games,
       friendsList
+  const gamesArray = [];
+
+  // loop through games, and call getLikesByGameId with the game id for each.
+  for (let i = 0; i < games.length; i++) {
+    const gameLikes = await getLikesByGameId(games[i].Id);
+    let newGameObject = {
+      Id: games[i].Id,
+      Name: games[i].name,
+      Genre: games[i].genre,
+      Image: games[i].Image,
+      Description: games[i].Description,
+      Likes: gameLikes.length,
+    };
+    gamesArray.push(newGameObject);
+  }
+
+  return {
+    props: {
+      userById,
+      gamesArray,
     },
   };
 }
 
 export default function User({ userById, gameLikes, deviceType, friendsList }) {
+export default function User({ userById, gamesArray, deviceType }) {
   const router = useRouter();
   const { user } = router.query;
 
@@ -110,8 +132,8 @@ export default function User({ userById, gameLikes, deviceType, friendsList }) {
           </nav>
         </div>
       </div>
-      <div className='relative w-full h-screen mt-16'>
-        <div className='absolute z-10 w-full h-full '>
+      <div className='static w-full h-screen mt-16'>
+        <div>
           <div className='flex items-center justify-start h-full px-16'>
             <div className='flex-col hidden w-3/12 py-12 space-y-4 lg:flex '>
               <div className='flex flex-row w-full space-x-4'></div>
@@ -152,19 +174,23 @@ export default function User({ userById, gameLikes, deviceType, friendsList }) {
         </div>
 
         <div className='container mx-auto'>
-          <div className='mb-12'>
+          {/* <div className='mb-12'>
             <CardSlider
               className='mb-16'
               listType={'recommended'}
               user={user}
-              gameLikes={gameLikes}
+              games={gamesArray}
             />
           </div>
           <div className='mb-12'>
             <CardSlider listType={'friendsPlaying'} user={user} />
-          </div>
+          </div> */}
           <div className='pb-12'>
-            <CardSlider listType={'popularGames'} user={user} />
+            <CardSlider
+              listType={'popularGames'}
+              user={user}
+              games={gamesArray}
+            />
           </div>
         </div>
       </div>
