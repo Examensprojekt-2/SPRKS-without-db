@@ -153,7 +153,7 @@ export default function User({
               className='flex-col float-right w-3/12 py-12 m-auto mt-0 mr-0 space-y-4'
               style={{ display: 'none' }}
             >
-              {/* <Friends user={user} friendsList={friendsList} /> */}
+              <Friends user={user} friendsList={friendsList} />
               {/* {console.log(friendsList)} */}
             </div>
           </div>
