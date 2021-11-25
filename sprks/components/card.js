@@ -1,28 +1,30 @@
 import React, { useState } from 'react';
 import axios from 'axios';
 
-function Card({ picture, text, likes, title, tags, gameLikes }) {
+function Card({ picture, text, likes, name, genre, gameId, user }) {
   // When clicking the like button
   async function addLike() {
     console.log('Clicked like button');
+
     try {
       await axios.post('/api/addLike', {
-        userId: 5,
-        gameId: 2,
+        userId: parseInt(user),
+        gameId: gameId,
       });
     } catch (err) {
       console.error('Error', err);
     }
   }
 
-  // Counter for number of likes
-  let numOfLikes = 0;
-
   return (
     <div class='mx-auto md:w-auto md:max-w-5xl pb-4 bg-transparent max-h-screen shadow-sm flex-row rounded-t-lg relative ml-3 mr-3'>
-      <img class='w-full rounded-t-lg' src={picture} alt='Mountain' />
+      <img
+        class='object-cover w-full h-52 rounded-t-lg'
+        src={picture}
+        alt='Mountain'
+      />
       <div class='px-6 py-4'>
-        <div class='font-bold text-xl mb-2 text-gray-200'>{title}</div>
+        <div class='font-bold text-xl mb-2 text-gray-200'>{name}</div>
         {text.length > 50 ? (
           <p class='text-gray-300 text-base'>{text.slice(0, 47)}...</p>
         ) : (
@@ -49,23 +51,18 @@ function Card({ picture, text, likes, title, tags, gameLikes }) {
             />
           </svg>
         </button>
-        {/* If gameLikes isn't null, write num of likes, else write 0 likes */}
-        {gameLikes != null ? (
-          <p class='text-center text-gray-200'>{gameLikes} likes</p>
+        {/* If likes isn't null, write num of likes, else write 0 likes */}
+        {likes != null ? (
+          <p class='text-center text-gray-200'>{likes} likes</p>
         ) : (
           <p class='text-center text-gray-200'>0 likes</p>
         )}
       </div>
 
       <div class='px-6 pt-4 pb-2 text-center'>
-        {tags &&
-          tags.map((tag) => {
-            return (
-              <span class='inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2'>
-                {tag}
-              </span>
-            );
-          })}
+        <span class='inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2'>
+          {genre}
+        </span>
       </div>
     </div>
   );

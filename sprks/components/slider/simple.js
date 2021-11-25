@@ -21,10 +21,10 @@ const responsive = {
 
 // Because this is an inframe, so the SSR mode doesn't not do well here.
 // It will work on real devices.
-const Simple = ({ currentList, deviceType, gameLikes }) => {
+const Simple = ({ deviceType, games, user }) => {
   return (
     <div>
-      <h1 className='text-white'>{currentList[0].listTitle}</h1>
+      <h1 className='text-white'>Popular</h1>
       <Carousel
         ssr
         partialVisbile
@@ -32,7 +32,7 @@ const Simple = ({ currentList, deviceType, gameLikes }) => {
         itemClass='image-item'
         responsive={responsive}
       >
-        {currentList.map((obj) => {
+        {games.map((obj) => {
           return (
             <div>
               <div className='container pb-4'>
@@ -40,9 +40,10 @@ const Simple = ({ currentList, deviceType, gameLikes }) => {
                   picture={obj.Image}
                   text={obj.Description}
                   likes={obj.Likes}
-                  title={obj.Title}
-                  tags={obj.Tags}
-                  gameLikes={gameLikes}
+                  name={obj.Name}
+                  genre={obj.Genre}
+                  gameId={obj.Id}
+                  user={user}
                 />
               </div>{' '}
             </div>

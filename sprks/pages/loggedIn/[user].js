@@ -13,30 +13,56 @@ import CardSlider from '../../components/slider/cardSlider';
 import { useRouter } from 'next/router';
 import { getGames, getUserById } from '../api/users';
 import { getLikes, getLikesByGameId } from '../api/likes';
+import { getFriends } from '../api/friends';
 
-export async function getServerSideProps() {
-  const userById = await getUserById(1);
+export async function getServerSideProps(context) {
+  const userById = await getUserById(parseInt(context.params?.user));
   const likes = await getLikes();
-  const gameLikes = await getLikesByGameId();
+  console.log('userbyId ' + userById);
+  console.log(context.params?.user);
+  // returns an array of game objects.
   const games = await getGames();
+  const friendsList = await getFriends(context.params?.user);
+  console.log(friendsList);
+
+  const gamesArray = [];
+
+  // loop through games, and call getLikesByGameId with the game id for each.
+  for (let i = 0; i < games.length; i++) {
+    const gameLikes = await getLikesByGameId(games[i].Id);
+    let newGameObject = {
+      Id: games[i].Id,
+      Name: games[i].name,
+      Genre: games[i].genre,
+      Image: games[i].Image,
+      Description: games[i].Description,
+      Likes: gameLikes.length,
+    };
+    gamesArray.push(newGameObject);
+  }
+
   return {
     props: {
       userById,
-      likes,
-      gameLikes,
-      games
+      gamesArray,
+      friendsList,
     },
   };
 }
 
-export default function User({ userById, gameLikes, deviceType }) {
+export default function User({
+  userById,
+  gamesArray,
+  friendsList,
+  deviceType,
+}) {
   const router = useRouter();
   const { user } = router.query;
 
   return (
     <div className='bg-black'>
       <div className='text-white'>
-        {console.log(userById)}
+        {/* {console.log(userById)} */}
         {userById[0].name} + password {userById[0].password}
       </div>
       <div className='fixed top-0 z-50 w-full text-white body-font bg-gradient-to-b from-black'>
@@ -119,6 +145,7 @@ export default function User({ userById, gameLikes, deviceType }) {
               className='flex-col float-right w-3/12 py-12 m-auto mt-0 mr-0 space-y-4'
               style={{ display: 'none' }}
             >
+              <p>he</p>
               <NewFriends user={user} />
             </div>
             <div
@@ -126,10 +153,12 @@ export default function User({ userById, gameLikes, deviceType }) {
               className='flex-col float-right w-3/12 py-12 m-auto mt-0 mr-0 space-y-4'
               style={{ display: 'none' }}
             >
-              <Friends user={user} />
+              {/* <Friends user={user} friendsList={friendsList} /> */}
+              {/* {console.log(friendsList)} */}
             </div>
           </div>
         </div>
+        +
         <div className='absolute bottom-0 w-full h-64 bg-gradient-to-t from-black'></div>
         <div className='absolute bottom-0 w-full h-64 bg-gradient-to-t from-black'></div>
         <div className='object-cover w-1/2 m-auto h-1/2'>
@@ -143,21 +172,24 @@ export default function User({ userById, gameLikes, deviceType }) {
             ></source>
           </video>
         </div>
-
         <div className='container mx-auto'>
-          <div className='mb-12'>
+          {/* <div className='mb-12'>
             <CardSlider
               className='mb-16'
               listType={'recommended'}
               user={user}
-              gameLikes={gameLikes}
+              games={gamesArray}
             />
           </div>
           <div className='mb-12'>
             <CardSlider listType={'friendsPlaying'} user={user} />
-          </div>
+          </div> */}
           <div className='pb-12'>
-            <CardSlider listType={'popularGames'} user={user} />
+            <CardSlider
+              listType={'popularGames'}
+              user={user}
+              games={gamesArray}
+            />
           </div>
         </div>
       </div>
