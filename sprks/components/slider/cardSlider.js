@@ -13,6 +13,7 @@ import {
 
 const CardSlider = ({ listType, user, gameLikes, deviceType }) => {
   // TODO - Fetch from db
+
   function getRightList(type, user) {
     switch (type) {
       case 'recommended':

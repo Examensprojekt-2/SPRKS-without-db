@@ -9,7 +9,7 @@ export async function getUsers() {
 
 export async function getGames() {
   const Game = await prisma.game.findMany();
-  console.log(Game);
+  console.log("Game", Game);
   return Game;
 }
 

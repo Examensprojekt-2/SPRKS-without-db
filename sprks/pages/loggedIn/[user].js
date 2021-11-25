@@ -4,48 +4,40 @@ import styles from '../../styles/Home.module.css';
 import Friends from '../../components/friends';
 import { toggleFriendsNew } from '../../functions/functions';
 import Card from '../../components/card';
-import { GetServerSideProps, NextPage } from 'next';
 
 import Hamburger from '../../components/hamburger';
 import NewFriends from '../../components/newFriends';
 import userProfile from '../../components/userProfile';
 import CardSlider from '../../components/slider/cardSlider';
-import { getLikes, getLikesByGameId } from '../api/likes';
 
 import { useRouter } from 'next/router';
 import { getGames, getUserById } from '../api/users';
+import { getLikes, getLikesByGameId } from '../api/likes';
 
-export async function getServerSideProps(context) {
-  // Fetch the current unit from the API with the unit ID
-  console.log('test context ' + context.params?.user);
-  const userById = await getUserById(parseInt(context.params?.user));
-  console.log(userById);
-
-  const allGames = await getGames();
+export async function getServerSideProps() {
+  const userById = await getUserById(1);
   const likes = await getLikes();
   const gameLikes = await getLikesByGameId();
+  const games = await getGames();
   return {
     props: {
-      user: userById,
-      games: allGames,
+      userById,
       likes,
       gameLikes,
+      games
     },
   };
 }
 
-export default function User({ user, gameLikes, deviceType }) {
-  // const router = useRouter();
-  // const { user } = router.query;
-  let currentUser = user[0];
-  let likedGames = gameLikes.length;
+export default function User({ userById, gameLikes, deviceType }) {
+  const router = useRouter();
+  const { user } = router.query;
+
   return (
     <div className='bg-black'>
       <div className='text-white'>
-        {console.log(currentUser)}
-        {console.log(likedGames)}
-        {/* {console.log(games)} */}
-        {/* {userById[0].name} + password {userById[0].password} */}
+        {console.log(userById)}
+        {userById[0].name} + password {userById[0].password}
       </div>
       <div className='fixed top-0 z-50 w-full text-white body-font bg-gradient-to-b from-black'>
         <div className='flex flex-col flex-wrap items-center p-5 px-16 md:flex-row'>
@@ -57,7 +49,6 @@ export default function User({ user, gameLikes, deviceType }) {
             <li>Games</li>
             <li>Friends</li>
             <li>Popular</li>
-            <li></li>
           </ul>
           <nav className='flex-wrap items-center justify-center hidden space-x-6 text-base font-semibold md:ml-auto lg:flex'>
             <svg
@@ -69,7 +60,7 @@ export default function User({ user, gameLikes, deviceType }) {
               <path
                 fillRule='evenodd'
                 d='M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z'
-                clip-rule='evenodd'
+                clipRule='evenodd'
               ></path>
             </svg>
             <svg
@@ -82,7 +73,7 @@ export default function User({ user, gameLikes, deviceType }) {
               <path
                 strokeLinecap='round'
                 strokeLinejoin='round'
-                stroke-width='2'
+                strokeWidth='2'
                 d='M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7'
               ></path>
             </svg>
@@ -108,7 +99,7 @@ export default function User({ user, gameLikes, deviceType }) {
                 <path
                   fillRule='evenodd'
                   d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z'
-                  clip-rule='evenodd'
+                  clipRule='evenodd'
                 ></path>
               </svg> */}
             </button>
@@ -128,14 +119,14 @@ export default function User({ user, gameLikes, deviceType }) {
               className='flex-col float-right w-3/12 py-12 m-auto mt-0 mr-0 space-y-4'
               style={{ display: 'none' }}
             >
-              {/* <NewFriends user={user} /> */}
+              <NewFriends user={user} />
             </div>
             <div
               id='friends'
               className='flex-col float-right w-3/12 py-12 m-auto mt-0 mr-0 space-y-4'
               style={{ display: 'none' }}
             >
-              {/* <Friends user={user} /> */}
+              <Friends user={user} />
             </div>
           </div>
         </div>
@@ -158,8 +149,8 @@ export default function User({ user, gameLikes, deviceType }) {
             <CardSlider
               className='mb-16'
               listType={'recommended'}
-              user={user[0].name}
-              gameLikes={likedGames}
+              user={user}
+              gameLikes={gameLikes}
             />
           </div>
           <div className='mb-12'>

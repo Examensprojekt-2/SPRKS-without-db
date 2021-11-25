@@ -17,10 +17,12 @@ model Friends {
 }
 
 model Game {
-  Id    Int     @id(map: "PK__Game__3214EC07B5D890BB") @default(autoincrement())
-  name  String? @db.VarChar(255)
-  genre String? @db.VarChar(255)
-  Likes Likes[]
+  Id          Int     @id(map: "PK__Game__3214EC07B5D890BB") @default(autoincrement())
+  name        String? @db.VarChar(255)
+  genre       String? @db.VarChar(255)
+  Image       String? @db.VarChar(1000)
+  Description String? @db.VarChar(1000)
+  Likes       Likes[]
 }
 
 model Likes {
