@@ -13,23 +13,26 @@ import CardSlider from '../../components/slider/cardSlider';
 import { useRouter } from 'next/router';
 import { getGames, getUserById } from '../api/users';
 import { getLikes, getLikesByGameId } from '../api/likes';
+import { getFriends } from '../api/friends';
 
 export async function getServerSideProps() {
   const userById = await getUserById(1);
   const likes = await getLikes();
   const gameLikes = await getLikesByGameId();
   const games = await getGames();
+  const friendsList = await getFriends()
   return {
     props: {
       userById,
       likes,
       gameLikes,
-      games
+      games,
+      friendsList
     },
   };
 }
 
-export default function User({ userById, gameLikes, deviceType }) {
+export default function User({ userById, gameLikes, deviceType, friendsList }) {
   const router = useRouter();
   const { user } = router.query;
 
@@ -119,6 +122,7 @@ export default function User({ userById, gameLikes, deviceType }) {
               className='flex-col float-right w-3/12 py-12 m-auto mt-0 mr-0 space-y-4'
               style={{ display: 'none' }}
             >
+              <p>he</p>
               <NewFriends user={user} />
             </div>
             <div
@@ -126,7 +130,10 @@ export default function User({ userById, gameLikes, deviceType }) {
               className='flex-col float-right w-3/12 py-12 m-auto mt-0 mr-0 space-y-4'
               style={{ display: 'none' }}
             >
-              <Friends user={user} />
+              <Friends 
+              user={user} 
+              friendsList={friendsList}/>
+              {/* {console.log(friendsList)} */}
             </div>
           </div>
         </div>
