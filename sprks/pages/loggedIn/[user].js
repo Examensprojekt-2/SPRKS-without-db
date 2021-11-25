@@ -17,19 +17,34 @@ import { getLikes, getLikesByGameId } from '../api/likes';
 export async function getServerSideProps(context) {
   const userById = await getUserById(parseInt(context.params?.user));
   const likes = await getLikes();
-  const gameLikes = await getLikesByGameId();
+
+  // returns an array of game objects.
   const games = await getGames();
+  const gamesArray = [];
+
+  // loop through games, and call getLikesByGameId with the game id for each.
+  for (let i = 0; i < games.length; i++) {
+    const gameLikes = await getLikesByGameId(games[i].Id);
+    let newGameObject = {
+      Id: games[i].Id,
+      Name: games[i].name,
+      Genre: games[i].genre,
+      Image: games[i].Image,
+      Description: games[i].Description,
+      Likes: gameLikes.length,
+    };
+    gamesArray.push(newGameObject);
+  }
+
   return {
     props: {
       userById,
-      likes,
-      gameLikes,
-      games,
+      gamesArray,
     },
   };
 }
 
-export default function User({ userById, gameLikes, deviceType }) {
+export default function User({ userById, gamesArray, deviceType }) {
   const router = useRouter();
   const { user } = router.query;
 
@@ -145,19 +160,23 @@ export default function User({ userById, gameLikes, deviceType }) {
         </div>
 
         <div className='container mx-auto'>
-          <div className='mb-12'>
+          {/* <div className='mb-12'>
             <CardSlider
               className='mb-16'
               listType={'recommended'}
               user={user}
-              gameLikes={gameLikes}
+              games={gamesArray}
             />
           </div>
           <div className='mb-12'>
             <CardSlider listType={'friendsPlaying'} user={user} />
-          </div>
+          </div> */}
           <div className='pb-12'>
-            <CardSlider listType={'popularGames'} user={user} />
+            <CardSlider
+              listType={'popularGames'}
+              user={user}
+              games={gamesArray}
+            />
           </div>
         </div>
       </div>

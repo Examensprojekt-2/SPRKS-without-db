@@ -11,37 +11,32 @@ import {
   getRecommendedGames,
 } from '../../functions/functions';
 
-const CardSlider = ({ listType, user, gameLikes, deviceType }) => {
+const CardSlider = ({ listType, user, games, deviceType }) => {
   // TODO - Fetch from db
 
-  function getRightList(type, user) {
-    switch (type) {
-      case 'recommended':
-        let recommended = getRecommendedGames(user);
-        return recommended;
-      case 'friendsPlaying':
-        let friendsPlaying = getFriendsPlaying();
-        return friendsPlaying;
-      case 'popularGames':
-        let popularGames = getPopularGames();
-        return popularGames;
-      default:
-        break;
-    }
-  }
+  // function getRightList(type, user) {
+  //   switch (type) {
+  //     case 'recommended':
+  //       let recommended = getRecommendedGames(user);
+  //       return recommended;
+  //     case 'friendsPlaying':
+  //       let friendsPlaying = getFriendsPlaying();
+  //       return friendsPlaying;
+  //     case 'popularGames':
+  //       let popularGames = getPopularGames();
+  //       return popularGames;
+  //     default:
+  //       break;
+  //   }
+  // }
 
-  let currentList = getRightList(listType, user);
+  // let currentList = getRightList(listType, user);
+
   return (
     <Fragment>
       <Section>
         {/* Show list of games if currentlist is loaded */}
-        {currentList ? (
-          <Simple
-            currentList={currentList}
-            deviceType={deviceType}
-            gameLikes={gameLikes}
-          />
-        ) : null}
+        <Simple deviceType={deviceType} games={games} user={user} />
       </Section>
     </Fragment>
   );
