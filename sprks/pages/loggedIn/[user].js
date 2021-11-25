@@ -14,8 +14,8 @@ import { useRouter } from 'next/router';
 import { getGames, getUserById } from '../api/users';
 import { getLikes, getLikesByGameId } from '../api/likes';
 
-export async function getServerSideProps(context) {
-  const userById = await getUserById(parseInt(context.params?.user));
+export async function getServerSideProps() {
+  const userById = await getUserById(1);
   const likes = await getLikes();
   const gameLikes = await getLikesByGameId();
   const games = await getGames();
@@ -24,7 +24,7 @@ export async function getServerSideProps(context) {
       userById,
       likes,
       gameLikes,
-      games,
+      games
     },
   };
 }
