@@ -107,8 +107,8 @@ export default function User({ userById, gameLikes, deviceType }) {
           </nav>
         </div>
       </div>
-      <div className='relative w-full h-screen mt-16'>
-        <div className='absolute z-10 w-full h-full '>
+      <div className='static w-full h-screen mt-16'>
+        <div>
           <div className='flex items-center justify-start h-full px-16'>
             <div className='flex-col hidden w-3/12 py-12 space-y-4 lg:flex '>
               <div className='flex flex-row w-full space-x-4'></div>
