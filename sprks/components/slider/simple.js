@@ -22,6 +22,7 @@ const responsive = {
 // Because this is an inframe, so the SSR mode doesn't not do well here.
 // It will work on real devices.
 const Simple = ({ deviceType, games, user }) => {
+  console.log('mest gilllade' + games);
   return (
     <div>
       <h1 className='text-white'>Popular</h1>
