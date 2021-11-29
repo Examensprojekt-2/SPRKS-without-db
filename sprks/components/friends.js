@@ -13,7 +13,8 @@ function Friends({ user, friendsList }) {
               alt='Randy Robertson'
             />
             <p class='hover:text-blue-dark text-center font-bold'>
-              {friendsList[0].friendName}
+           
+              
               {user}
             </p>
           </div>
@@ -31,9 +32,11 @@ function Friends({ user, friendsList }) {
                     <p class='text-3xl p-0 text-green-dark'>&bull;</p>
                   </div>
                   <div class='w-4/5 h-10 py-3 px-1'>
-                    <p class='hover:text-blue-dark'>
-                      {friendsList[0].friendName}
-                    </p>
+                  {friendsList.map((friend) => {
+                      return(<div>{friend.name}</div>
+                        )
+
+                   })}
                   </div>
                   <div class='w-1/5 h-10 text-right p-3'>
                     <p class='text-sm text-grey-dark'>Member</p>

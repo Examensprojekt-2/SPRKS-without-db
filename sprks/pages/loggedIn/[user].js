@@ -25,6 +25,7 @@ export async function getServerSideProps(context) {
   const friendsList = await getFriends(context.params?.user);
   console.log(friendsList);
 
+
   const gamesArray = [];
 
   // loop through games, and call getLikesByGameId with the game id for each.
