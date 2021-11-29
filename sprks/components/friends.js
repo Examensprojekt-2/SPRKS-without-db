@@ -1,6 +1,7 @@
 import { users } from '../database/user';
 
-function Friends({ user }) {
+function Friends({ user, friendsList }) {
+  console.log(friendsList);
   return (
     <div class='w-full max-w-screen-xl mx-auto mt-4 p-6'>
       <div class='relative rounded overflow-hidden border border-grey-light mb-8 mt-1 bg-white'>
@@ -12,13 +13,13 @@ function Friends({ user }) {
               alt='Randy Robertson'
             />
             <p class='hover:text-blue-dark text-center font-bold'>
-              {/* {users[0].name} */}
+              {friendsList[0].friendName}
               {user}
             </p>
           </div>
           <div class='sm:flex sm:items-center px-2 py-4 mt-8'>
             <div class='flex-grow'>
-              <h3 class='font-normal px-2 py-3'>Friends</h3>
+              <h3 class='font-normal px-2 py-3'>{friendsList[0].friendId}</h3>
               <input
                 type='text'
                 placeholder='Search teams or members'
@@ -31,7 +32,7 @@ function Friends({ user }) {
                   </div>
                   <div class='w-4/5 h-10 py-3 px-1'>
                     <p class='hover:text-blue-dark'>
-                      {users[0].friends[0].name}
+                      {friendsList[0].friendName}
                     </p>
                   </div>
                   <div class='w-1/5 h-10 text-right p-3'>
@@ -44,7 +45,7 @@ function Friends({ user }) {
                   </div>
                   <div class='w-4/5 h-10 py-3 px-1'>
                     <p class='hover:text-blue-dark'>
-                      {users[0].friends[1].name}
+                      {friendsList[1].friendName}
                     </p>
                   </div>
                   <div class='w-1/5 h-10 text-right p-3'>
@@ -57,7 +58,7 @@ function Friends({ user }) {
                   </div>
                   <div class='w-4/5 h-10 py-3 px-1'>
                     <p class='hover:text-blue-dark'>
-                      {users[0].friends[2].name}
+                      {/* {users[0].friends[2].name} */}
                     </p>
                   </div>
                   <div class='w-1/5 h-10 text-right p-3'>
@@ -70,7 +71,7 @@ function Friends({ user }) {
                   </div>
                   <div class='w-4/5 h-10 py-3 px-1'>
                     <p class='hover:text-blue-dark'>
-                      {users[0].friends[3].name}
+                      {/* {users[0].friends[3].name} */}
                     </p>
                   </div>
                   <div class='w-1/5 h-10 text-right p-3'>
@@ -83,7 +84,7 @@ function Friends({ user }) {
                   </div>
                   <div class='w-4/5  h-10 py-3 px-1'>
                     <p class='hover:text-blue-dark'>
-                      {users[0].friends[4].name}
+                      {/* {users[0].friends[4].name} */}
                     </p>
                   </div>
                   <div class='w-1/5 h-10 text-right p-3'>

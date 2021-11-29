@@ -9,15 +9,62 @@ import Hamburger from '../../components/hamburger';
 import NewFriends from '../../components/newFriends';
 import userProfile from '../../components/userProfile';
 import CardSlider from '../../components/slider/cardSlider';
-import { useRouter } from 'next/router';
 
-export default function User({ deviceType }) {
+import { useRouter } from 'next/router';
+import { getGames, getUserById } from '../api/users';
+import { getLikes, getLikesByGameId } from '../api/likes';
+import { getFriends } from '../api/friends';
+
+export async function getServerSideProps(context) {
+  const userById = await getUserById(parseInt(context.params?.user));
+  const likes = await getLikes();
+  console.log('userbyId ' + userById);
+  console.log(context.params?.user);
+  // returns an array of game objects.
+  const games = await getGames();
+  const friendsList = await getFriends(context.params?.user);
+  console.log(friendsList);
+
+  const gamesArray = [];
+
+  // loop through games, and call getLikesByGameId with the game id for each.
+  for (let i = 0; i < games.length; i++) {
+    const gameLikes = await getLikesByGameId(games[i].Id);
+    let newGameObject = {
+      Id: games[i].Id,
+      Name: games[i].name,
+      Genre: games[i].genre,
+      Image: games[i].Image,
+      Description: games[i].Description,
+      Likes: gameLikes.length,
+    };
+    gamesArray.push(newGameObject);
+  }
+
+  return {
+    props: {
+      userById,
+      gamesArray,
+      friendsList,
+    },
+  };
+}
+
+export default function User({
+  userById,
+  gamesArray,
+  friendsList,
+  deviceType,
+}) {
   const router = useRouter();
   const { user } = router.query;
 
   return (
     <div className='bg-black'>
-      <div>{user}</div>
+      <div className='text-white'>
+        {/* {console.log(userById)} */}
+        {userById[0].name} + password {userById[0].password}
+      </div>
       <div className='fixed top-0 z-50 w-full text-white body-font bg-gradient-to-b from-black'>
         <div className='flex flex-col flex-wrap items-center p-5 px-16 md:flex-row'>
           <a className='flex items-center mb-4 font-medium text-white title-font md:mb-0'>
@@ -28,7 +75,6 @@ export default function User({ deviceType }) {
             <li>Games</li>
             <li>Friends</li>
             <li>Popular</li>
-            <li></li>
           </ul>
           <nav className='flex-wrap items-center justify-center hidden space-x-6 text-base font-semibold md:ml-auto lg:flex'>
             <svg
@@ -40,7 +86,7 @@ export default function User({ deviceType }) {
               <path
                 fillRule='evenodd'
                 d='M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z'
-                clip-rule='evenodd'
+                clipRule='evenodd'
               ></path>
             </svg>
             <svg
@@ -53,7 +99,7 @@ export default function User({ deviceType }) {
               <path
                 strokeLinecap='round'
                 strokeLinejoin='round'
-                stroke-width='2'
+                strokeWidth='2'
                 d='M12 8v13m0-13V6a2 2 0 112 2h-2zm0 0V5.5A2.5 2.5 0 109.5 8H12zm-7 4h14M5 12a2 2 0 110-4h14a2 2 0 110 4M5 12v7a2 2 0 002 2h10a2 2 0 002-2v-7'
               ></path>
             </svg>
@@ -79,7 +125,7 @@ export default function User({ deviceType }) {
                 <path
                   fillRule='evenodd'
                   d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z'
-                  clip-rule='evenodd'
+                  clipRule='evenodd'
                 ></path>
               </svg> */}
             </button>
@@ -99,6 +145,7 @@ export default function User({ deviceType }) {
               className='flex-col float-right w-3/12 py-12 m-auto mt-0 mr-0 space-y-4'
               style={{ display: 'none' }}
             >
+              <p>he</p>
               <NewFriends user={user} />
             </div>
             <div
@@ -106,10 +153,12 @@ export default function User({ deviceType }) {
               className='flex-col float-right w-3/12 py-12 m-auto mt-0 mr-0 space-y-4'
               style={{ display: 'none' }}
             >
-              <Friends user={user} />
+              <Friends user={user} friendsList={friendsList} />
+              {/* {console.log(friendsList)} */}
             </div>
           </div>
         </div>
+        +
         <div className='absolute bottom-0 w-full h-64 bg-gradient-to-t from-black'></div>
         <div className='absolute bottom-0 w-full h-64 bg-gradient-to-t from-black'></div>
         <div className='object-cover w-1/2 m-auto h-1/2'>
@@ -123,20 +172,24 @@ export default function User({ deviceType }) {
             ></source>
           </video>
         </div>
-
         <div className='container mx-auto'>
-          <div className='mb-12'>
+          {/* <div className='mb-12'>
             <CardSlider
               className='mb-16'
               listType={'recommended'}
               user={user}
+              games={gamesArray}
             />
           </div>
           <div className='mb-12'>
             <CardSlider listType={'friendsPlaying'} user={user} />
-          </div>
+          </div> */}
           <div className='pb-12'>
-            <CardSlider listType={'popularGames'} user={user} />
+            <CardSlider
+              listType={'popularGames'}
+              user={user}
+              games={gamesArray}
+            />
           </div>
         </div>
       </div>
