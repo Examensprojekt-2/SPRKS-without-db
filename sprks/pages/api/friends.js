@@ -66,3 +66,4 @@ export async function getFriends(id) {
   //   };
   //   newFriendList.push(friendObj);
   // }
+
