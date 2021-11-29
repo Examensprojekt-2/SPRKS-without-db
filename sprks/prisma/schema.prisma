@@ -39,6 +39,7 @@ model Users {
   name                            String?   @db.VarChar(255)
   password                        String?   @db.VarChar(255)
   age                             Int?
+  Image                           String?   @db.VarChar(500)
   Friends_Friends_friendIdToUsers Friends[] @relation("Friends_friendIdToUsers")
   Friends_Friends_userIdToUsers   Friends[] @relation("Friends_userIdToUsers")
   Likes                           Likes[]
