@@ -5,6 +5,10 @@ import Friends from '../../components/friends';
 import { toggleFriendsNew } from '../../functions/functions';
 import Card from '../../components/card';
 
+// React Context
+import { Context } from '../Store';
+import React, { useContext } from 'react';
+
 import Hamburger from '../../components/hamburger';
 import NewFriends from '../../components/newFriends';
 import userProfile from '../../components/userProfile';
@@ -24,7 +28,6 @@ export async function getServerSideProps(context) {
   const games = await getGames();
   const friendsList = await getFriends(context.params?.user);
   console.log(friendsList);
-
 
   const gamesArray = [];
 
@@ -60,12 +63,17 @@ export default function User({
   const router = useRouter();
   const { user } = router.query;
 
+  const [activeUser, setActiveUser] = useContext(Context);
+  console.log('test user: ' + activeUser);
+  setActiveUser(userById[0]);
+
   return (
     // NAVBAR, PROFILE, FRIENDS
     <div className='bg-black'>
       <div className='text-white'>
-        {/* {console.log(userById)} */}
+        {console.log(activeUser.name)}
         {userById[0].name} + password {userById[0].password}
+        {/* {setState(...state) } */}
       </div>
       <div className='fixed top-0 z-50 w-full text-white body-font bg-gradient-to-b from-black'>
         <div className='flex flex-col flex-wrap items-center p-5 px-16 md:flex-row'>
@@ -124,7 +132,7 @@ export default function User({
         </div>
       </div>
       <div className='relative w-full h-screen mt-16'>
-        <div className='absolute z-10 w-full h-full '>
+        <div className='absolute z-10 w-full h-1/4 '>
           <div className='flex items-center justify-start h-full px-16'>
             <div className='flex-col hidden w-3/12 py-12 space-y-4 lg:flex '>
               <div className='flex flex-row w-full space-x-4'></div>
@@ -146,34 +154,39 @@ export default function User({
               <Friends user={user} friendsList={friendsList} />
               {/* {console.log(friendsList)} */}
             </div>
-        </div>
-      </div>
-
-      {/* JORDGLOBEN */}
-      <div className='static w-full h-screen mt-16'>
-        <div>
-          <div className='flex items-center justify-start h-full px-16'>
-            <div className='flex-col hidden w-3/12 py-12 space-y-4 lg:flex '>
-              <div className='flex flex-row w-full space-x-4'></div>
-            </div>
           </div>
         </div>
-        +
-        <div className='absolute bottom-0 w-full h-64 bg-gradient-to-t from-black'></div>
-        <div className='absolute bottom-0 w-full h-64 bg-gradient-to-t from-black'></div>
-        <div className='object-cover w-1/2 m-auto h-1/2'>
-          <video className='object-cover h-full md:w-auto ' autoPlay muted loop>
-            <source
-              id='video'
-              className='object-contain h-screen'
-              src='https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1280_10MG.mp4'
-              height='10'
-              type='video/mp4'
-            ></source>
-          </video>
-        </div>
-        <div className='container mx-auto'>
-          {/* <div className='mb-12'>
+
+        {/* JORDGLOBEN */}
+        <div className='static w-full h-screen mt-16'>
+          <div>
+            <div className='flex items-center justify-start h-full px-16'>
+              <div className='flex-col hidden w-3/12 py-12 space-y-4 lg:flex '>
+                <div className='flex flex-row w-full space-x-4'></div>
+              </div>
+            </div>
+          </div>
+          +
+          <div className='absolute bottom-0 w-full h-64 bg-gradient-to-t from-black'></div>
+          <div className='absolute bottom-0 w-full h-64 bg-gradient-to-t from-black'></div>
+          <div className='object-cover w-1/2 m-auto h-1/2'>
+            <video
+              className='object-cover h-full md:w-auto '
+              autoPlay
+              muted
+              loop
+            >
+              <source
+                id='video'
+                className='object-contain h-screen'
+                src='https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1280_10MG.mp4'
+                height='10'
+                type='video/mp4'
+              ></source>
+            </video>
+          </div>
+          <div className='container mx-auto'>
+            {/* <div className='mb-12'>
             <CardSlider
               className='mb-16'
               listType={'recommended'}
@@ -184,20 +197,17 @@ export default function User({
           <div className='mb-12'>
             <CardSlider listType={'friendsPlaying'} user={user} />
           </div> */}
-          <div className='pb-12'>
-            <CardSlider
-              listType={'popularGames'}
-              user={user}
-              games={gamesArray}
-            />
+            <div className='pb-12'>
+              {console.log(gamesArray)}
+              <CardSlider listType={'popularGames'} games={gamesArray} />
+            </div>
           </div>
         </div>
+        <script
+          src='https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js'
+          defer
+        ></script>
       </div>
-      <script
-        src='https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js'
-        defer
-      ></script>
     </div>
-  </div>
   );
 }

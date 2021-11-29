@@ -18,13 +18,12 @@ export async function getServerSideProps() {
   return {
     props: {
       userProps,
-      likes
+      likes,
     },
   };
 }
 
 export default function Home({ userProps, deviceType }) {
-
   return (
     <div className='bg-black'>
       <div className='fixed top-0 z-50 w-full text-white bg-black body-font'>

@@ -21,7 +21,7 @@ const responsive = {
 
 // Because this is an inframe, so the SSR mode doesn't not do well here.
 // It will work on real devices.
-const Simple = ({ deviceType, games, user }) => {
+const Simple = ({ deviceType, games }) => {
   return (
     <div>
       <h1 className='text-white'>Popular</h1>
@@ -43,7 +43,6 @@ const Simple = ({ deviceType, games, user }) => {
                   name={obj.Name}
                   genre={obj.Genre}
                   gameId={obj.Id}
-                  user={user}
                 />
               </div>{' '}
             </div>

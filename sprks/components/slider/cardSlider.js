@@ -11,7 +11,7 @@ import {
   getRecommendedGames,
 } from '../../functions/functions';
 
-const CardSlider = ({ listType, user, games, deviceType }) => {
+const CardSlider = ({ listType, games, deviceType }) => {
   // TODO - Fetch from db
 
   // function getRightList(type, user) {
@@ -36,7 +36,7 @@ const CardSlider = ({ listType, user, games, deviceType }) => {
     <Fragment>
       <Section>
         {/* Show list of games if currentlist is loaded */}
-        <Simple deviceType={deviceType} games={games} user={user} />
+        <Simple deviceType={deviceType} games={games} />
       </Section>
     </Fragment>
   );
