@@ -61,6 +61,7 @@ export default function User({
   const { user } = router.query;
 
   return (
+    // NAVBAR, PROFILE, FRIENDS
     <div className='bg-black'>
       <div className='text-white'>
         {/* {console.log(userById)} */}
@@ -117,18 +118,6 @@ export default function User({
               className='flex items-center'
             >
               <img src='/profile-logo.png' alt='' className='w-9 h-1/2'></img>
-              {/* <svg
-                className='w-5 h-5 text-white stroke-current'
-                fill='currentColor'
-                viewBox='0 0 20 20'
-                xmlns='http://www.w3.org/2000/svg'
-              >
-                <path
-                  fillRule='evenodd'
-                  d='M5.293 7.293a1 1 0 011.414 0L10 10.586l3.293-3.293a1 1 0 111.414 1.414l-4 4a1 1 0 01-1.414 0l-4-4a1 1 0 010-1.414z'
-                  clipRule='evenodd'
-                ></path>
-              </svg> */}
             </button>
             <Hamburger />
           </nav>
@@ -143,7 +132,7 @@ export default function User({
 
             <div
               id='newFriends'
-              className='flex-col float-right w-3/12 py-12 m-auto mt-0 mr-0 space-y-4'
+              className='flex-col float-right w-3/12 m-auto mt-0 mr-0 space-y-4'
               style={{ display: 'none' }}
             >
               <p>he</p>
@@ -151,11 +140,21 @@ export default function User({
             </div>
             <div
               id='friends'
-              className='flex-col float-right w-3/12 py-12 m-auto mt-0 mr-0 space-y-4'
+              className='flex-col float-right w-3/12 m-auto mt-0 mr-0 space-y-4'
               style={{ display: 'none' }}
             >
               <Friends user={user} friendsList={friendsList} />
               {/* {console.log(friendsList)} */}
+            </div>
+        </div>
+      </div>
+
+      {/* JORDGLOBEN */}
+      <div className='static w-full h-screen mt-16'>
+        <div>
+          <div className='flex items-center justify-start h-full px-16'>
+            <div className='flex-col hidden w-3/12 py-12 space-y-4 lg:flex '>
+              <div className='flex flex-row w-full space-x-4'></div>
             </div>
           </div>
         </div>
@@ -199,5 +198,6 @@ export default function User({
         defer
       ></script>
     </div>
+  </div>
   );
 }
