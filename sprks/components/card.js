@@ -1,19 +1,25 @@
-import React, { useState } from 'react';
 import axios from 'axios';
+// React Context
+import { Context } from '../pages/Store';
+import React, { useContext, useState } from 'react';
 
-function Card({ picture, text, likes, name, genre, gameId, user }) {
+function Card({ picture, text, likes, name, genre, gameId }) {
+  const [activeUser, setActiveUser] = useContext(Context);
+  const [gameLikes, setGameLikes] = useState(likes);
+
   // When clicking the like button
   async function addLike() {
     console.log('Clicked like button');
-
     try {
       await axios.post('/api/addLike', {
-        userId: parseInt(user),
+        userId: parseInt(activeUser.Id),
         gameId: gameId,
       });
     } catch (err) {
       console.error('Error', err);
     }
+    // WIP - Direct updates the likes on the site.
+    setGameLikes(gameLikes + 1);
   }
 
   return (
@@ -52,8 +58,8 @@ function Card({ picture, text, likes, name, genre, gameId, user }) {
           </svg>
         </button>
         {/* If likes isn't null, write num of likes, else write 0 likes */}
-        {likes != null ? (
-          <p class='text-center text-gray-200'>{likes} likes</p>
+        {gameLikes != null ? (
+          <p class='text-center text-gray-200'>{gameLikes} likes</p>
         ) : (
           <p class='text-center text-gray-200'>0 likes</p>
         )}
