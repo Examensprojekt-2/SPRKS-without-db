@@ -172,17 +172,6 @@ export default function User({
           </video>
         </div>
         <div className='container mx-auto'>
-          {/* <div className='mb-12'>
-            <CardSlider
-              className='mb-16'
-              listType={'recommended'}
-              user={user}
-              games={gamesArray}
-            />
-          </div>
-          <div className='mb-12'>
-            <CardSlider listType={'friendsPlaying'} user={user} />
-          </div> */}
           <div className='pb-12'>
             <CardSlider
               listType={'popularGames'}

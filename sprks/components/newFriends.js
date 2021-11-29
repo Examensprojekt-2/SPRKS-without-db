@@ -2,18 +2,10 @@ import { users } from '../database/user';
 
 function NewFriends({ user }) {
   return (
-    <div class='my-10'>
+    <div style={{width: '350px', position: 'fixed'}} class='my-10'>
       <div class='bg-white rounded overflow-hidden'>
         <div class='text-center p-6  border-b'>
-        <h1 class="text-lg text-gray-600">Your profile</h1>
-          <img
-            class='h-24 w-24 rounded-full mx-auto'
-            src='https://randomuser.me/api/portraits/men/24.jpg'
-            alt='Randy Robertson'
-          />
-          <div>
-          <p class='py-2 px-4 text-xs font-semibold text-gray-700'>Marcus Asker</p>
-          </div>
+        <h1 class="text-lg text-gray-600">Your Profile</h1>
           <div class='mt-5'>
             <a
               href='#'
