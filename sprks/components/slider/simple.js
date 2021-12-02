@@ -26,10 +26,13 @@ const Simple = ({ listType, deviceType, games, user }) => {
   console.log('mest gilllade' + listType);
   let popularGames = false
   let allGames = false
+  let friendsLike = false
   if (listType == 'Popular games' ) {
     popularGames = true; 
-  } else {
+  } else if (listType == 'All games' ){
     allGames = true;
+  } else {
+    friendsLike = true;
   }
   return (
     <div>
@@ -82,6 +85,28 @@ const Simple = ({ listType, deviceType, games, user }) => {
             );
           })
       )}
+
+    {friendsLike && (
+
+    games.map((obj) => {
+      {console.log(obj)}
+      return (
+        <div>
+          <div className='container pb-4'>
+            <Card
+              picture={obj.Image}
+              text={obj.Description}
+              likes={obj.Likes}
+              name={obj.Name}
+              genre={obj.Genre}
+              gameId={obj.Id}
+              user={user}
+            />
+          </div>{' '}
+        </div>
+      );
+    })
+    )}
 
         )
       </Carousel>

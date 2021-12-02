@@ -12,7 +12,7 @@ import CardSlider from '../../components/slider/cardSlider';
 
 import { useRouter } from 'next/router';
 import { getGames, getUserById } from '../api/users';
-import { getLikes, getLikesByGameId, getMostLikedGames } from '../api/likes';
+import { getLikes, getLikesByGameId, getMostLikedGames, getFriendsLikes } from '../api/likes';
 import { getFriends } from '../api/friends';
 
 export async function getServerSideProps(context) {
@@ -26,6 +26,8 @@ export async function getServerSideProps(context) {
   console.log(friendsList);
   const mostLiked = await getMostLikedGames();
   console.log('mest gilllade' + mostLiked[0]);
+  const likesByFriends = await getFriendsLikes(context.params?.user);
+  console.log('friendslike' + likesByFriends)
 
   const gamesArray = [];
 
@@ -48,7 +50,8 @@ export async function getServerSideProps(context) {
       userById,
       gamesArray,
       friendsList,
-      mostLiked
+      mostLiked,
+      likesByFriends
       
     },
   };
@@ -59,7 +62,8 @@ export default function User({
   gamesArray,
   friendsList,
   deviceType,
-  mostLiked
+  mostLiked,
+  likesByFriends
 }) {
   const router = useRouter();
   const { user } = router.query;
@@ -68,7 +72,8 @@ export default function User({
     // NAVBAR, PROFILE, FRIENDS
     <div className='bg-black'>
       <div className='text-white'>
-        {/* {console.log(userById)} */}
+  
+
         {userById[0].name} + password {userById[0].password}
       </div>
       <div className='fixed top-0 z-50 w-full text-white body-font bg-gradient-to-b from-black'>
@@ -189,6 +194,13 @@ export default function User({
               listType={'Popular games' || ''}
               user={user}
               games={mostLiked}
+            />
+          </div>
+          <div className='pb-12'>
+            <CardSlider
+              listType={'Your friends favourite games' || ''}
+              user={user}
+              games={likesByFriends}
             />
           </div>
         </div>

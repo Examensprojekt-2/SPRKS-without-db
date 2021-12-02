@@ -12,6 +12,7 @@ import {
 } from '../../functions/functions';
 
 const CardSlider = ({ listType, user, games, deviceType }) => {
+  
   // TODO - Fetch from db
 
   // function getRightList(type) {
