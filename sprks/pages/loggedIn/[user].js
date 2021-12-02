@@ -12,7 +12,7 @@ import CardSlider from '../../components/slider/cardSlider';
 
 import { useRouter } from 'next/router';
 import { getGames, getUserById } from '../api/users';
-import { getLikes, getLikesByGameId } from '../api/likes';
+import { getLikes, getLikesByGameId, getMostLikedGames } from '../api/likes';
 import { getFriends } from '../api/friends';
 
 export async function getServerSideProps(context) {
@@ -24,7 +24,8 @@ export async function getServerSideProps(context) {
   const games = await getGames();
   const friendsList = await getFriends(context.params?.user);
   console.log(friendsList);
-
+  const mostLiked = await getMostLikedGames();
+  console.log('mest gilllade' + mostLiked[0]);
 
   const gamesArray = [];
 
@@ -47,6 +48,8 @@ export async function getServerSideProps(context) {
       userById,
       gamesArray,
       friendsList,
+      mostLiked
+      
     },
   };
 }
@@ -56,6 +59,7 @@ export default function User({
   gamesArray,
   friendsList,
   deviceType,
+  mostLiked
 }) {
   const router = useRouter();
   const { user } = router.query;
@@ -175,9 +179,16 @@ export default function User({
         <div className='container mx-auto'>
           <div className='pb-12'>
             <CardSlider
-              listType={'popularGames'}
+              listType={'All games'}
               user={user}
               games={gamesArray}
+            />
+          </div>
+          <div className='pb-12'>
+            <CardSlider
+              listType={'Popular games'}
+              user={user}
+              games={mostLiked}
             />
           </div>
         </div>
