@@ -1,7 +1,6 @@
 import { users } from '../database/user';
 
 function Friends({ user, friendsList }) {
-  console.log(friendsList);
   return (
     <div class='my-10'>
       <div class='bg-white rounded overflow-hidden'>

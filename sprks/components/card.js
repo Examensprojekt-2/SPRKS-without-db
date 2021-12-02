@@ -3,13 +3,14 @@ import axios from 'axios';
 import { Context } from '../pages/Store';
 import React, { useContext, useState } from 'react';
 
-function Card({ picture, text, likes, name, genre, gameId }) {
+
+function Card({ picture, text, likes, name, genre, gameId, hasUserLiked }) {
   const [activeUser, setActiveUser] = useContext(Context);
   const [gameLikes, setGameLikes] = useState(likes);
-
+  const [userLike, setUserLike] = useState(hasUserLiked);
+  
   // When clicking the like button
   async function addLike() {
-    console.log('Clicked like button');
     try {
       await axios.post('/api/addLike', {
         userId: parseInt(activeUser.Id),
@@ -19,7 +20,15 @@ function Card({ picture, text, likes, name, genre, gameId }) {
       console.error('Error', err);
     }
     // WIP - Direct updates the likes on the site.
-    setGameLikes(gameLikes + 1);
+  }
+  async function removeLike(userLike){
+    try {
+      await axios.delete('/api/removeLike',{
+        userLike: userLike,
+      })
+    }catch (err){
+      console.error('error', err)
+    }
   }
 
   return (
@@ -31,6 +40,7 @@ function Card({ picture, text, likes, name, genre, gameId }) {
       />
       <div class='px-6 py-4'>
         <div class='font-bold text-xl mb-2 text-gray-200'>{name}</div>
+        <div class='font-bold text-xl mb-2 text-gray-200'>{hasUserLiked}</div>
         {text.length > 50 ? (
           <p class='text-gray-300 text-base'>{text.slice(0, 47)}...</p>
         ) : (
@@ -40,14 +50,26 @@ function Card({ picture, text, likes, name, genre, gameId }) {
       <div class='text-center'>
         <button
           class='bg-gray-200 hover:bg-gray-300 text-black font-bold py-2 px-4 rounded-full'
-          onClick={addLike}
+          onClick={() => {
+            if (userLike == true){
+              setGameLikes(gameLikes -1);
+              removeLike(userLike)
+            }
+            else {
+              setGameLikes(gameLikes +1);
+              addLike();
+
+            }
+            setUserLike(!userLike);
+          }}
         >
+          
           <svg
             xmlns='http://www.w3.org/2000/svg'
             className='w-6 h-6'
-            fill='none'
             viewBox='0 0 24 24'
             stroke='currentColor'
+            fill={userLike ? 'red' : 'none'}
           >
             <path
               strokeLinecap='round'
@@ -57,6 +79,7 @@ function Card({ picture, text, likes, name, genre, gameId }) {
             />
           </svg>
         </button>
+
         {/* If likes isn't null, write num of likes, else write 0 likes */}
         {gameLikes != null ? (
           <p class='text-center text-gray-200'>{gameLikes} likes</p>

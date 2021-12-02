@@ -18,22 +18,23 @@ import { useRouter } from 'next/router';
 import { getGames, getUserById } from '../api/users';
 import { getLikes, getLikesByGameId } from '../api/likes';
 import { getFriends } from '../api/friends';
+import { getLike } from '../api/getLike';
 
 export async function getServerSideProps(context) {
   const userById = await getUserById(parseInt(context.params?.user));
   const likes = await getLikes();
-  console.log('userbyId ' + userById);
-  console.log(context.params?.user);
   // returns an array of game objects.
   const games = await getGames();
   const friendsList = await getFriends(context.params?.user);
-  console.log(friendsList);
 
   const gamesArray = [];
 
   // loop through games, and call getLikesByGameId with the game id for each.
   for (let i = 0; i < games.length; i++) {
     const gameLikes = await getLikesByGameId(games[i].Id);
+    let likeListUser = await getLike(context.params?.user, games[i].Id);
+    let likeOrNot= false;
+    likeListUser.length < 1 ? likeOrNot = false : likeOrNot = true;
     let newGameObject = {
       Id: games[i].Id,
       Name: games[i].name,
@@ -41,6 +42,7 @@ export async function getServerSideProps(context) {
       Image: games[i].Image,
       Description: games[i].Description,
       Likes: gameLikes.length,
+      UserLike: likeOrNot,
     };
     gamesArray.push(newGameObject);
   }
@@ -59,19 +61,18 @@ export default function User({
   gamesArray,
   friendsList,
   deviceType,
+  likeListUser,
 }) {
   const router = useRouter();
   const { user } = router.query;
 
   const [activeUser, setActiveUser] = useContext(Context);
-  console.log('test user: ' + activeUser);
   setActiveUser(userById[0]);
 
   return (
     // NAVBAR, PROFILE, FRIENDS
     <div className='bg-black'>
       <div className='text-white'>
-        {console.log(activeUser.name)}
         {userById[0].name} + password {userById[0].password}
         {/* {setState(...state) } */}
       </div>
@@ -198,7 +199,6 @@ export default function User({
             <CardSlider listType={'friendsPlaying'} user={user} />
           </div> */}
             <div className='pb-12'>
-              {console.log(gamesArray)}
               <CardSlider listType={'popularGames'} games={gamesArray} />
             </div>
           </div>

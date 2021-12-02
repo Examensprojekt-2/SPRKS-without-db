@@ -1,5 +1,5 @@
 import Carousel from 'react-multi-carousel';
-import Card from '../card';
+import Card from '../card'
 
 const responsive = {
   desktop: {
@@ -21,7 +21,7 @@ const responsive = {
 
 // Because this is an inframe, so the SSR mode doesn't not do well here.
 // It will work on real devices.
-const Simple = ({ deviceType, games }) => {
+const Simple = ({ deviceType, games}) => {
   return (
     <div>
       <h1 className='text-white'>Popular</h1>
@@ -43,6 +43,7 @@ const Simple = ({ deviceType, games }) => {
                   name={obj.Name}
                   genre={obj.Genre}
                   gameId={obj.Id}
+                  hasUserLiked={obj.UserLike}
                 />
               </div>{' '}
             </div>
