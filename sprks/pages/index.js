@@ -11,7 +11,6 @@ import userProfile from '../components/userProfile';
 import CardSlider from '../components/slider/cardSlider';
 import { getUsers } from '../pages/api/users';
 import { getLikes } from '../pages/api/likes';
-
 export async function getServerSideProps() {
   let userProps = await getUsers();
   let likes = await getLikes();
@@ -24,7 +23,7 @@ export async function getServerSideProps() {
 }
 
 export default function Home({ userProps, deviceType }) {
-
+  console.log(userProps);
   return (
     <div className='bg-black'>
       <div className='fixed top-0 z-50 w-full text-white bg-black body-font'>
@@ -45,11 +44,11 @@ export default function Home({ userProps, deviceType }) {
                     <button key={user.Id} className='mr-4'>
                       <img
                         class='inline object-cover w-32 h-32 mr-2 rounded-full'
-                        src='https://images.pexels.com/photos/2589653/pexels-photo-2589653.jpeg?auto=compress&cs=tinysrgb&h=650&w=940'
+                        src={user.Image}
                         alt='Profile image'
                       />
                       <h3>
-                        {user.name} +, {user.age} år
+                        {user.name} , {user.age} år
                       </h3>
                     </button>
                   </Link>
