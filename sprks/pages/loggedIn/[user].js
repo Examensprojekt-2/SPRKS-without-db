@@ -48,7 +48,7 @@ export async function getServerSideProps(context) {
       userById,
       gamesArray,
       friendsList,
-      // mostLiked
+      mostLiked
       
     },
   };
@@ -179,14 +179,14 @@ export default function User({
         <div className='container mx-auto'>
           <div className='pb-12'>
             <CardSlider
-              listType={'allGames'}
+              listType={'All games'}
               user={user}
               games={gamesArray}
             />
           </div>
           <div className='pb-12'>
             <CardSlider
-              listType={'popularGames'}
+              listType={'Popular games'}
               user={user}
               games={mostLiked}
             />

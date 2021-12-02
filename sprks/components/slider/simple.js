@@ -26,20 +26,21 @@ const Simple = ({ listType, deviceType, games, user }) => {
   console.log('mest gilllade' + listType);
   let popularGames = false
   let allGames = false
-  if (listType == 'popularGames') {
+  if (listType == 'Popular games') {
     popularGames = true; 
   } else {
     allGames = true;
   }
   return (
     <div>
-      <h1 className='text-white'>Popular</h1>
+      <h1 className='text-white'>{listType}</h1>
       <Carousel
         ssr
         partialVisbile
         deviceType={deviceType}
         itemClass='image-item'
         responsive={responsive}
+        itemAriaLabel = 'hej'
       >
         {allGames && (
 
@@ -61,15 +62,16 @@ const Simple = ({ listType, deviceType, games, user }) => {
               );
             })
         )}
-        {/* {popularGames && (
+        {popularGames && (
           games.map((obj) => {
+            {console.log(obj)}
             return (
               <div>
                 <div className='container pb-4'>
                   <Card
                     picture={obj.Image}
                     text={obj.Description}
-                    likes={obj.Likes}
+                    likes={obj.count}
                     name={obj.Name}
                     genre={obj.Genre}
                     gameId={obj.Id}
@@ -79,7 +81,7 @@ const Simple = ({ listType, deviceType, games, user }) => {
               </div>
             );
           })
-      )} */}
+      )}
 
         )
       </Carousel>
