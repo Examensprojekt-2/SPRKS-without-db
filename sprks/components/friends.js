@@ -19,6 +19,7 @@ function Friends({ userById, user, friendsList }) {
 
         <div id="FREINDSLIST" class='border-b'>
           {friendsList.map((friend) => {
+            console.log(friend.Image)
             return (
               <div class="hover:bg-gray-100">
                 <img

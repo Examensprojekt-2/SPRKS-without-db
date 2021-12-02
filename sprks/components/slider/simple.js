@@ -26,7 +26,7 @@ const Simple = ({ listType, deviceType, games, user }) => {
   console.log('mest gilllade' + listType);
   let popularGames = false
   let allGames = false
-  if (listType == 'Popular games') {
+  if (listType == 'Popular games' ) {
     popularGames = true; 
   } else {
     allGames = true;

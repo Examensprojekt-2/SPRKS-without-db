@@ -186,7 +186,7 @@ export default function User({
           </div>
           <div className='pb-12'>
             <CardSlider
-              listType={'Popular games'}
+              listType={'Popular games' || ''}
               user={user}
               games={mostLiked}
             />
