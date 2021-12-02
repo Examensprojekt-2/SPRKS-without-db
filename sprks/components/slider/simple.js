@@ -31,7 +31,7 @@ const Simple = ({ listType, deviceType, games, user }) => {
     popularGames = true; 
   } else if (listType == 'All games' ){
     allGames = true;
-  } else {
+  } else if (listType == 'Your friends favourite games'){
     friendsLike = true;
   }
   return (

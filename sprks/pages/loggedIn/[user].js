@@ -184,7 +184,7 @@ export default function User({
         <div className='container mx-auto'>
           <div className='pb-12'>
             <CardSlider
-              listType={'All games'}
+              listType={'All games' || ''}
               user={user}
               games={gamesArray}
             />
