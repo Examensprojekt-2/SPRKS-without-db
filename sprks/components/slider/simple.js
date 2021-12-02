@@ -21,8 +21,16 @@ const responsive = {
 
 // Because this is an inframe, so the SSR mode doesn't not do well here.
 // It will work on real devices.
-const Simple = ({ deviceType, games, user }) => {
+const Simple = ({ listType, deviceType, games, user }) => {
   console.log('mest gilllade' + games);
+  console.log('mest gilllade' + listType);
+  let popularGames = false
+  let allGames = false
+  if (listType == 'popularGames') {
+    popularGames = true; 
+  } else {
+    allGames = true;
+  }
   return (
     <div>
       <h1 className='text-white'>Popular</h1>
@@ -33,23 +41,47 @@ const Simple = ({ deviceType, games, user }) => {
         itemClass='image-item'
         responsive={responsive}
       >
-        {games.map((obj) => {
-          return (
-            <div>
-              <div className='container pb-4'>
-                <Card
-                  picture={obj.Image}
-                  text={obj.Description}
-                  likes={obj.Likes}
-                  name={obj.Name}
-                  genre={obj.Genre}
-                  gameId={obj.Id}
-                  user={user}
-                />
-              </div>{' '}
-            </div>
-          );
-        })}
+        {allGames && (
+
+            games.map((obj) => {
+              return (
+                <div>
+                  <div className='container pb-4'>
+                    <Card
+                      picture={obj.Image}
+                      text={obj.Description}
+                      likes={obj.Likes}
+                      name={obj.Name}
+                      genre={obj.Genre}
+                      gameId={obj.Id}
+                      user={user}
+                    />
+                  </div>{' '}
+                </div>
+              );
+            })
+        )}
+        {/* {popularGames && (
+          games.map((obj) => {
+            return (
+              <div>
+                <div className='container pb-4'>
+                  <Card
+                    picture={obj.Image}
+                    text={obj.Description}
+                    likes={obj.Likes}
+                    name={obj.Name}
+                    genre={obj.Genre}
+                    gameId={obj.Id}
+                    user={user}
+                  />
+                </div>{' '}
+              </div>
+            );
+          })
+      )} */}
+
+        )
       </Carousel>
     </div>
   );

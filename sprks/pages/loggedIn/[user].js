@@ -25,7 +25,7 @@ export async function getServerSideProps(context) {
   const friendsList = await getFriends(context.params?.user);
   console.log(friendsList);
   const mostLiked = await getMostLikedGames();
-  console.log('mest gilllade' + mostLiked);
+  console.log('mest gilllade' + mostLiked[0]);
 
   const gamesArray = [];
 
@@ -48,6 +48,8 @@ export async function getServerSideProps(context) {
       userById,
       gamesArray,
       friendsList,
+      // mostLiked
+      
     },
   };
 }
@@ -177,13 +179,14 @@ export default function User({
         <div className='container mx-auto'>
           <div className='pb-12'>
             <CardSlider
-              listType={'popularGames'}
+              listType={'allGames'}
               user={user}
               games={gamesArray}
             />
           </div>
           <div className='pb-12'>
             <CardSlider
+              listType={'popularGames'}
               user={user}
               games={mostLiked}
             />
