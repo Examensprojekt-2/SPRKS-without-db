@@ -14,29 +14,27 @@ import {
 const CardSlider = ({ listType, games, deviceType}) => {
   // TODO - Fetch from db
 
-  // function getRightList(type, user) {
+  // function getRightList(type) {
   //   switch (type) {
-  //     case 'recommended':
-  //       let recommended = getRecommendedGames(user);
+  //     case 'allGames':
+  //       let recommended = true;
   //       return recommended;
-  //     case 'friendsPlaying':
-  //       let friendsPlaying = getFriendsPlaying();
-  //       return friendsPlaying;
+     
   //     case 'popularGames':
-  //       let popularGames = getPopularGames();
+  //       let popularGames = true;
   //       return popularGames;
   //     default:
   //       break;
   //   }
   // }
 
-  // let currentList = getRightList(listType, user);
+  // let currentList = getRightList(listType);
 
   return (
     <Fragment>
       <Section>
         {/* Show list of games if currentlist is loaded */}
-        <Simple deviceType={deviceType} games={games} />
+        <Simple deviceType={deviceType} games={games} user={user} listType={listType} />
       </Section>
     </Fragment>
   );

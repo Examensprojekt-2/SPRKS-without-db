@@ -16,7 +16,7 @@ import CardSlider from '../../components/slider/cardSlider';
 
 import { useRouter } from 'next/router';
 import { getGames, getUserById } from '../api/users';
-import { getLikes, getLikesByGameId } from '../api/likes';
+import { getLikes, getLikesByGameId, getMostLikedGames } from '../api/likes';
 import { getFriends } from '../api/friends';
 import { getLike } from '../api/getLike';
 
@@ -26,6 +26,9 @@ export async function getServerSideProps(context) {
   // returns an array of game objects.
   const games = await getGames();
   const friendsList = await getFriends(context.params?.user);
+  console.log(friendsList);
+  const mostLiked = await getMostLikedGames();
+  console.log('mest gilllade' + mostLiked[0]);
 
   const gamesArray = [];
 
@@ -52,6 +55,8 @@ export async function getServerSideProps(context) {
       userById,
       gamesArray,
       friendsList,
+      mostLiked
+      
     },
   };
 }
@@ -62,6 +67,7 @@ export default function User({
   friendsList,
   deviceType,
   likeListUser,
+  mostLiked
 }) {
   const router = useRouter();
   const { user } = router.query;
@@ -152,7 +158,7 @@ export default function User({
               className='flex-col float-right w-3/12 m-auto mt-0 mr-0 space-y-4'
               style={{ display: 'none' }}
             >
-              <Friends user={user} friendsList={friendsList} />
+              <Friends userById={userById} user={user} friendsList={friendsList} />
               {/* {console.log(friendsList)} */}
             </div>
           </div>
@@ -167,37 +173,32 @@ export default function User({
               </div>
             </div>
           </div>
-          +
-          <div className='absolute bottom-0 w-full h-64 bg-gradient-to-t from-black'></div>
-          <div className='absolute bottom-0 w-full h-64 bg-gradient-to-t from-black'></div>
-          <div className='object-cover w-1/2 m-auto h-1/2'>
-            <video
-              className='object-cover h-full md:w-auto '
-              autoPlay
-              muted
-              loop
-            >
-              <source
-                id='video'
-                className='object-contain h-screen'
-                src='https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1280_10MG.mp4'
-                height='10'
-                type='video/mp4'
-              ></source>
-            </video>
-          </div>
-          <div className='container mx-auto'>
-            {/* <div className='mb-12'>
+        </div>
+        +
+        <div className='absolute bottom-0 w-full h-64 bg-gradient-to-t from-black'></div>
+        <div className='absolute bottom-0 w-full h-64 bg-gradient-to-t from-black'></div>
+        <div className='object-cover w-1/2 m-auto h-1/2'>
+          <video className='object-cover h-full md:w-auto ' autoPlay muted loop>
+            <source
+              id='video'
+              className='object-contain h-screen'
+              src='https://file-examples-com.github.io/uploads/2017/04/file_example_MP4_1280_10MG.mp4'
+              height='10'
+              type='video/mp4'
+            ></source>
+          </video>
+        </div>
+        <div className='container mx-auto'>
+          <div className='pb-12'>
             <CardSlider
-              className='mb-16'
-              listType={'recommended'}
+              listType={'All games'}
               user={user}
               games={gamesArray}
             />
           </div>
-          <div className='mb-12'>
+          {/* <div className='mb-12'>
             <CardSlider listType={'friendsPlaying'} user={user} />
-          </div> */}
+          </div>  */}
             <div className='pb-12'>
               <CardSlider listType={'popularGames'} games={gamesArray} />
             </div>
@@ -208,6 +209,6 @@ export default function User({
           defer
         ></script>
       </div>
-    </div>
+
   );
 }
