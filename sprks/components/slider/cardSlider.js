@@ -11,7 +11,7 @@ import {
   getRecommendedGames,
 } from '../../functions/functions';
 
-const CardSlider = ({ listType, games, deviceType}) => {
+const CardSlider = ({ listType, games, deviceType, user}) => {
   // TODO - Fetch from db
 
   // function getRightList(type) {
