@@ -1,9 +1,8 @@
-import { users } from '../database/user';
 
-function Friends({ userById, user, friendsList }) {
+function Friends({ userById, friendsList }) {
   
   return (
-    <div style={{ width: '350px', position: 'fixed' }} class='my-10'>
+    <div style={{ width: '350px', position: 'fixed'}} class='my-10' id="hide">
       <div class='bg-white rounded overflow-hidden'>
         <div class='text-center p-6  border-b'>
           <h1 class="text-lg text-gray-600">Your Profile</h1>

@@ -5,32 +5,9 @@ import UAParser from 'ua-parser-js';
 import React, { Fragment } from 'react';
 import Simple from './simple';
 import Section from './section';
-import {
-  getFriendsPlaying,
-  getPopularGames,
-  getRecommendedGames,
-} from '../../functions/functions';
 
 const CardSlider = ({ listType, user, games, deviceType }) => {
   
-  // TODO - Fetch from db
-
-  // function getRightList(type) {
-  //   switch (type) {
-  //     case 'allGames':
-  //       let recommended = true;
-  //       return recommended;
-     
-  //     case 'popularGames':
-  //       let popularGames = true;
-  //       return popularGames;
-  //     default:
-  //       break;
-  //   }
-  // }
-
-  // let currentList = getRightList(listType);
-
   return (
     <Fragment>
       <Section>

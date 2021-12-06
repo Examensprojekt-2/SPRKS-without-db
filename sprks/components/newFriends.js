@@ -1,6 +1,4 @@
-import { users } from '../database/user';
-
-function NewFriends({ user }) {
+function NewFriends() {
   return (
     <div style={{width: '350px', position: 'fixed'}} class='my-10'>
       <div class='bg-white rounded overflow-hidden'>

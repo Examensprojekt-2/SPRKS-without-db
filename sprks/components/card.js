@@ -42,7 +42,7 @@ function Card({ picture, text, likes, name, genre, gameId, hasUserLiked }) {
         <div class='font-bold text-xl mb-2 text-gray-200'>{name}</div>
         <div class='font-bold text-xl mb-2 text-gray-200'>{hasUserLiked}</div>
         {text.length > 50 ? (
-          <p class='text-gray-300 text-base'>{text.slice(0, 47)}...</p>
+          <p class='text-gray-300 text-base'>{text.slice(0, 150)}...</p>
         ) : (
           <p class='text-gray-300 text-base'>{text}</p>
         )}

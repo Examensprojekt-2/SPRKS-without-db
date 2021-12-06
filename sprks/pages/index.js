@@ -1,14 +1,5 @@
-import Head from 'next/head';
 import Link from 'next/link';
-import styles from '../styles/Home.module.css';
-import Friends from '../components/friends';
-import { toggleFriendsNew } from '../functions/functions';
-import Card from '../components/card';
 
-import Hamburger from '../components/hamburger';
-import NewFriends from '../components/newFriends';
-import userProfile from '../components/userProfile';
-import CardSlider from '../components/slider/cardSlider';
 import { getUsers } from '../pages/api/users';
 import { getLikes } from '../pages/api/likes';
 export async function getServerSideProps() {
@@ -17,12 +8,13 @@ export async function getServerSideProps() {
   return {
     props: {
       userProps,
-      likes,
+      likes
     },
   };
 }
 
 export default function Home({ userProps, deviceType }) {
+  console.log(userProps);
   return (
     <div className='bg-black'>
       <div className='fixed top-0 z-50 w-full text-white bg-black body-font'>

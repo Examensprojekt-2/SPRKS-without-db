@@ -6,19 +6,4 @@ export async function getLike(id, gameid) {
     return gameLikes
 }
 
-// export async function getFriends(id) {
-//     const friends = await prisma.$queryRaw(Prisma.sql`SELECT name FROM Users INNER JOIN Friends 
-//     on friends.userId = Users.Id WHERE friends.friendId = ${id}`)
-//     return friends
-//     }
-
-
-
-
-
-// export async function getUsers() {
-//   const userProps = await prisma.users.findMany();
-//   return userProps;
-// }
-
 

@@ -1,9 +1,5 @@
-import Head from 'next/head';
-import Image from 'next/image';
-import styles from '../../styles/Home.module.css';
 import Friends from '../../components/friends';
 import { toggleFriendsNew } from '../../functions/functions';
-import Card from '../../components/card';
 
 // React Context
 import { Context } from '../Store';
@@ -11,7 +7,6 @@ import React, { useContext } from 'react';
 
 import Hamburger from '../../components/hamburger';
 import NewFriends from '../../components/newFriends';
-import userProfile from '../../components/userProfile';
 import CardSlider from '../../components/slider/cardSlider';
 
 import { useRouter } from 'next/router';
@@ -65,7 +60,6 @@ export default function User({
   userById,
   gamesArray,
   friendsList,
-  deviceType,
   mostLiked,
   likesByFriends
 }) {
@@ -164,7 +158,6 @@ export default function User({
         </div>
 
         {/* JORDGLOBEN */}
-        <div className='static w-full h-screen mt-16'>
           <div>
             <div className='flex items-center justify-start h-full px-16'>
               <div className='flex-col hidden w-3/12 py-12 space-y-4 lg:flex '>
@@ -172,12 +165,11 @@ export default function User({
               </div>
             </div>
           </div>
-        </div>
         +
         <div className='absolute bottom-0 w-full h-64 bg-gradient-to-t from-black'></div>
         <div className='absolute bottom-0 w-full h-64 bg-gradient-to-t from-black'></div>
         <div className='object-cover w-1/2 m-auto h-1/2'>
-          <video className='object-cover h-full md:w-auto ' autoPlay muted loop>
+          <video className='object-cover h-full md:w-auto' autoPlay muted loop>
             <source
               id='video'
               className='object-contain h-screen'
