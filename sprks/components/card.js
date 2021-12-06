@@ -32,6 +32,7 @@ function Card({ picture, text, likes, name, genre, gameId, hasUserLiked }) {
   }
 
   return (
+    <>
     <div class='mx-auto md:w-auto md:max-w-5xl pb-4 bg-transparent max-h-screen shadow-sm flex-row rounded-t-lg relative ml-3 mr-3'>
       <img
         class='object-cover w-full h-52 rounded-t-lg'
@@ -41,8 +42,8 @@ function Card({ picture, text, likes, name, genre, gameId, hasUserLiked }) {
       <div class='px-6 py-4'>
         <div class='font-bold text-xl mb-2 text-gray-200'>{name}</div>
         <div class='font-bold text-xl mb-2 text-gray-200'>{hasUserLiked}</div>
-        {text.length > 50 ? (
-          <p class='text-gray-300 text-base'>{text.slice(0, 47)}...</p>
+        {text.length > 100 ? (
+          <p class='text-gray-300 text-base'>{text.slice(0, 87)}<bold>...</bold></p>
         ) : (
           <p class='text-gray-300 text-base'>{text}</p>
         )}
@@ -93,6 +94,7 @@ function Card({ picture, text, likes, name, genre, gameId, hasUserLiked }) {
         </span>
       </div>
     </div>
+  </>
   );
 }
 
