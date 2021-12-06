@@ -3,37 +3,16 @@ import 'react-multi-carousel/lib/styles.css';
 // import "./style.css";
 import UAParser from 'ua-parser-js';
 import React, { Fragment } from 'react';
-import Simple from './Simple';
-import Section from './Section';
-import {
-  getFriendsPlaying,
-  getPopularGames,
-  getRecommendedGames,
-} from '../../functions/functions';
+import Simple from './simple';
+import Section from './section';
 
-const CardSlider = ({ listType, deviceType }) => {
-  function getRightList(type) {
-    switch (type) {
-      case 'recommended':
-        let recommended = getRecommendedGames();
-        return recommended;
-      case 'friendsPlaying':
-        let friendsPlaying = getFriendsPlaying();
-        return friendsPlaying;
-      case 'popularGames':
-        let popularGames = getPopularGames();
-        return popularGames;
-      default:
-        break;
-    }
-  }
-
-  let currentList = getRightList(listType);
-
+const CardSlider = ({ listType, user, games, deviceType }) => {
+  
   return (
     <Fragment>
       <Section>
-        <Simple currentList={currentList} deviceType={deviceType} />
+        {/* Show list of games if currentlist is loaded */}
+        <Simple deviceType={deviceType} games={games} user={user} listType={listType} />
       </Section>
     </Fragment>
   );

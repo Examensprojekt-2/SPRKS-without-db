@@ -1,57 +1,46 @@
-import { users } from '../database/user';
 
-function Friends() {
+function Friends({ userById, friendsList }) {
+  
   return (
-    <div>
-      <div>
-        <div className='py-2 text-xl text-green-500'>
-          <h1>Online</h1>
-        </div>
-        <div className='text-lg text-white border-4 border-opacity-50 rounded-lg border-light-blue-500'>
-          <div className='px-2 py-2'>
-            <p className='py-0.5'>
-              Jessen{' '}
-              <p className='inline text-green-500 text-opacity-75'>
-                is playing{' '}
-              </p>
-              <p className='inline'>Fortnite</p>
-            </p>
-            <p className='py-0.5'>
-              Adam{' '}
-              <p className='inline text-blue-500 text-opacity-75'>is online</p>
-            </p>
-            <p className='py-0.5'>
-              Erik{' '}
-              <p className='inline text-blue-500 text-opacity-75'>is online</p>
-            </p>
-            <p className='py-0.5'>
-              Oscar{' '}
-              <p className='inline text-blue-500 text-opacity-75'>is online</p>
-            </p>
+    <div style={{ width: '350px', position: 'fixed'}} class='my-10' id="hide">
+      <div class='bg-white rounded overflow-hidden'>
+        <div class='text-center p-6  border-b'>
+          <h1 class="text-lg text-gray-600">Your Profile</h1>
+          <img
+            class='h-24 w-24 rounded-full mx-auto'
+            src={userById[0].Image}
+            alt='Randy Robertson'
+          />
+          <div>
+            <p class='py-2 px-4 text-xs font-semibold text-gray-700'>{userById[0].name}</p>
           </div>
         </div>
-        <div className='py-2 text-xl text-gray-500'>
-          <h1>Offline</h1>
+
+        <div id="FREINDSLIST" class='border-b'>
+          {friendsList.map((friend) => {
+            return (
+              <div class="hover:bg-gray-100">
+                <img
+                  class='inline-block h-7 w-7 rounded-full m-2'
+                  src={friend.Image}
+                />
+                <p class="inline-block px-4 py-2 text-gray-800">{friend.name}</p>
+                <p class="float-right inline-block px-4 py-2 text-gray-800">Online</p>
+              </div>
+            )
+          })}
+          <p class="px-4 py-2 text-gray-800">(4/9) offline</p>
+
         </div>
-        <div className='text-lg text-white border-4 border-opacity-50 rounded-lg border-light-blue-500'>
-          <div className='px-2 py-2'>
-            <p className='py-0.5'>
-              Filip{' '}
-              <p className='inline text-gray-100 text-opacity-50'>
-                4 day(s) ago
-              </p>
-            </p>
-            <p className='py-0.5'>
-              Marcus{' '}
-              <p className='inline text-gray-100 text-opacity-50'>
-                1 day(s) ago
-              </p>
-            </p>
-          </div>
+
+        <div class=''>
+          <a href='#' class='flex justify-center px-4 py-2 hover:bg-gray-100'>
+            <p class='px-4 py-2 text-lg text-gray-900'>Add Friend</p>
+          </a>
         </div>
+
       </div>
     </div>
   );
 }
-
 export default Friends;
