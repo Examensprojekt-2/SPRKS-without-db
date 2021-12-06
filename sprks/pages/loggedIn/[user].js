@@ -26,11 +26,8 @@ export async function getServerSideProps(context) {
   // returns an array of game objects.
   const games = await getGames();
   const friendsList = await getFriends(context.params?.user);
-  console.log(friendsList);
   const mostLiked = await getMostLikedGames();
-  console.log('mest gilllade' + mostLiked[0]);
   const likesByFriends = await getFriendsLikes(context.params?.user);
-  console.log('friendslike' + likesByFriends)
 
   const gamesArray = [];
 
@@ -77,7 +74,7 @@ export default function User({
 
   const [activeUser, setActiveUser] = useContext(Context);
   setActiveUser(userById[0]);
-
+  
   return (
     // NAVBAR, PROFILE, FRIENDS
     <div className='bg-black'>
@@ -162,7 +159,6 @@ export default function User({
               style={{ display: 'none' }}
             >
               <Friends userById={userById} user={user} friendsList={friendsList} />
-              {/* {console.log(friendsList)} */}
             </div>
           </div>
         </div>
@@ -194,21 +190,21 @@ export default function User({
         <div className='container mx-auto'>
           <div className='pb-12'>
             <CardSlider
-              listType={'All games' || ''}
+              listType={'All games'}
               user={user}
               games={gamesArray}
             />
           </div>
           <div className='pb-12'>
             <CardSlider
-              listType={'Popular games' || ''}
+              listType={'Popular games'}
               user={user}
               games={mostLiked}
             />
           </div>
           <div className='pb-12'>
             <CardSlider
-              listType={'Your friends favourite games' || ''}
+              listType={'Your friends favourite games'}
               user={user}
               games={likesByFriends}
             />

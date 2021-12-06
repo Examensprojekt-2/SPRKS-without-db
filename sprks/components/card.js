@@ -58,7 +58,6 @@ function Card({ picture, text, likes, name, genre, gameId, hasUserLiked }) {
             else {
               setGameLikes(gameLikes +1);
               addLike();
-
             }
             setUserLike(!userLike);
           }}
