@@ -30,6 +30,8 @@ export async function getServerSideProps(context) {
   const likesByFriends = await getFriendsLikes(context.params?.user);
 
   const gamesArray = [];
+  const mostlikedArray = [];
+  const likesByFriendsArray = [];
 
   // loop through games, and call getLikesByGameId with the game id for each.
   for (let i = 0; i < games.length; i++) {
@@ -48,15 +50,48 @@ export async function getServerSideProps(context) {
     };
     gamesArray.push(newGameObject);
   }
+  
+  for (let i = 0; i < mostLiked.length; i++) {
+    const gameLikes = await getLikesByGameId(mostLiked[i].gameId);
+    let likeListUser = await getLike(context.params?.user, mostLiked[i].gameId);
+    let likeOrNot= false;
+    likeListUser.length < 1 ? likeOrNot = false : likeOrNot = true;
+    let newGameObject = {
+      Id: mostLiked[i].gameId,
+      Name: mostLiked[i].name,
+      Genre: mostLiked[i].genre,
+      Image: mostLiked[i].Image,
+      Description: mostLiked[i].Description,
+      Likes: gameLikes.length,
+      UserLike: likeOrNot,
+    };
+    mostlikedArray.push(newGameObject);
+  }
+
+  for (let i = 0; i < likesByFriends.length; i++) {
+    const gameLikes = await getLikesByGameId(likesByFriends[i].gameId);
+    let likeListUser = await getLike(context.params?.user, likesByFriends[i].gameId);
+    let likeOrNot= false;
+    likeListUser.length < 1 ? likeOrNot = false : likeOrNot = true;
+    let newGameObject = {
+      Id: likesByFriends[i].gameId,
+      Name: likesByFriends[i].name,
+      Genre: likesByFriends[i].genre,
+      Image: likesByFriends[i].Image,
+      Description: likesByFriends[i].Description,
+      Likes: gameLikes.length,
+      UserLike: likeOrNot,
+    };
+    likesByFriendsArray.push(newGameObject);
+  }
 
   return {
     props: {
       userById,
       gamesArray,
       friendsList,
-      mostLiked,
-      likesByFriends
-      
+      mostlikedArray,
+      likesByFriendsArray,
     },
   };
 }
@@ -66,15 +101,15 @@ export default function User({
   gamesArray,
   friendsList,
   deviceType,
-  mostLiked,
-  likesByFriends
+  mostlikedArray,
+  likesByFriendsArray,
 }) {
   const router = useRouter();
   const { user } = router.query;
-
+  
   const [activeUser, setActiveUser] = useContext(Context);
   setActiveUser(userById[0]);
-  
+
   return (
     // NAVBAR, PROFILE, FRIENDS
     <div className='bg-black'>
@@ -192,21 +227,21 @@ export default function User({
             <CardSlider
               listType={'All games'}
               user={user}
-              games={gamesArray}
+              games={gamesArray || []}
             />
           </div>
           <div className='pb-12'>
             <CardSlider
               listType={'Popular games'}
               user={user}
-              games={mostLiked}
+              games={mostlikedArray || []}
             />
           </div>
           <div className='pb-12'>
             <CardSlider
               listType={'Your friends favourite games'}
               user={user}
-              games={likesByFriends}
+              games={likesByFriendsArray || []}
             />
           </div>
         </div>
