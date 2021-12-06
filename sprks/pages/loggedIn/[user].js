@@ -5,6 +5,10 @@ import Friends from '../../components/friends';
 import { toggleFriendsNew } from '../../functions/functions';
 import Card from '../../components/card';
 
+// React Context
+import { Context } from '../Store';
+import React, { useContext } from 'react';
+
 import Hamburger from '../../components/hamburger';
 import NewFriends from '../../components/newFriends';
 import userProfile from '../../components/userProfile';
@@ -14,12 +18,11 @@ import { useRouter } from 'next/router';
 import { getGames, getUserById } from '../api/users';
 import { getLikes, getLikesByGameId, getMostLikedGames, getFriendsLikes } from '../api/likes';
 import { getFriends } from '../api/friends';
+import { getLike } from '../api/getLike';
 
 export async function getServerSideProps(context) {
   const userById = await getUserById(parseInt(context.params?.user));
   const likes = await getLikes();
-  console.log('userbyId ' + userById);
-  console.log(context.params?.user);
   // returns an array of game objects.
   const games = await getGames();
   const friendsList = await getFriends(context.params?.user);
@@ -34,6 +37,9 @@ export async function getServerSideProps(context) {
   // loop through games, and call getLikesByGameId with the game id for each.
   for (let i = 0; i < games.length; i++) {
     const gameLikes = await getLikesByGameId(games[i].Id);
+    let likeListUser = await getLike(context.params?.user, games[i].Id);
+    let likeOrNot= false;
+    likeListUser.length < 1 ? likeOrNot = false : likeOrNot = true;
     let newGameObject = {
       Id: games[i].Id,
       Name: games[i].name,
@@ -41,6 +47,7 @@ export async function getServerSideProps(context) {
       Image: games[i].Image,
       Description: games[i].Description,
       Likes: gameLikes.length,
+      UserLike: likeOrNot,
     };
     gamesArray.push(newGameObject);
   }
@@ -68,13 +75,15 @@ export default function User({
   const router = useRouter();
   const { user } = router.query;
 
+  const [activeUser, setActiveUser] = useContext(Context);
+  setActiveUser(userById[0]);
+
   return (
     // NAVBAR, PROFILE, FRIENDS
     <div className='bg-black'>
       <div className='text-white'>
-  
-
         {userById[0].name} + password {userById[0].password}
+        {/* {setState(...state) } */}
       </div>
       <div className='fixed top-0 z-50 w-full text-white body-font bg-gradient-to-b from-black'>
         <div className='flex flex-col flex-wrap items-center p-5 px-16 md:flex-row'>
@@ -133,7 +142,7 @@ export default function User({
         </div>
       </div>
       <div className='relative w-full h-screen mt-16'>
-        <div className='absolute z-10 w-full h-full '>
+        <div className='absolute z-10 w-full h-1/4 '>
           <div className='flex items-center justify-start h-full px-16'>
             <div className='flex-col hidden w-3/12 py-12 space-y-4 lg:flex '>
               <div className='flex flex-row w-full space-x-4'></div>
@@ -155,15 +164,16 @@ export default function User({
               <Friends userById={userById} user={user} friendsList={friendsList} />
               {/* {console.log(friendsList)} */}
             </div>
+          </div>
         </div>
-      </div>
 
-      {/* JORDGLOBEN */}
-      <div className='static w-full h-screen mt-16'>
-        <div>
-          <div className='flex items-center justify-start h-full px-16'>
-            <div className='flex-col hidden w-3/12 py-12 space-y-4 lg:flex '>
-              <div className='flex flex-row w-full space-x-4'></div>
+        {/* JORDGLOBEN */}
+        <div className='static w-full h-screen mt-16'>
+          <div>
+            <div className='flex items-center justify-start h-full px-16'>
+              <div className='flex-col hidden w-3/12 py-12 space-y-4 lg:flex '>
+                <div className='flex flex-row w-full space-x-4'></div>
+              </div>
             </div>
           </div>
         </div>
@@ -204,12 +214,11 @@ export default function User({
             />
           </div>
         </div>
+        <script
+          src='https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js'
+          defer
+        ></script>
       </div>
-      <script
-        src='https://cdn.jsdelivr.net/gh/alpinejs/alpine@v2.x.x/dist/alpine.js'
-        defer
-      ></script>
     </div>
-  </div>
   );
 }

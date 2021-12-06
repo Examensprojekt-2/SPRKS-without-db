@@ -1,5 +1,5 @@
 import Carousel from 'react-multi-carousel';
-import Card from '../card';
+import Card from '../card'
 
 const responsive = {
   desktop: {
@@ -59,6 +59,7 @@ const Simple = ({ listType, deviceType, games, user }) => {
                       genre={obj.Genre}
                       gameId={obj.Id}
                       user={user}
+                      hasUserLiked={obj.UserLike}
                     />
                   </div>{' '}
                 </div>
@@ -79,6 +80,7 @@ const Simple = ({ listType, deviceType, games, user }) => {
                     genre={obj.Genre}
                     gameId={obj.Id}
                     user={user}
+                    hasUserLiked={obj.UserLike}
                   />
                 </div>{' '}
               </div>

@@ -6,7 +6,6 @@ const prisma = new PrismaClient();
 // remove the like. Remove like if db catches unique constraint.
 export default async (req, res) => {
     const data = req.body;
-    console.log('req.body', req.body);
     try {
         const result = await prisma.likes.create({
             data: {
@@ -25,7 +24,6 @@ export default async (req, res) => {
                         userId: req.body.userId
                     }
                 })
-                console.log("Removed like");
             }
         }
     }
