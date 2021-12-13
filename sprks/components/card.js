@@ -31,6 +31,9 @@ function Card({ picture, text, likes, name, genre, gameId, hasUserLiked }) {
     }
   }
 
+  // State for toggling the game description
+  const [showText, setShowText] = useState(false);
+
   return (
     <>
     <div class='mx-auto md:w-auto md:max-w-5xl pb-4 bg-transparent max-h-screen shadow-sm flex-row rounded-t-lg relative ml-3 mr-3'>
@@ -42,11 +45,15 @@ function Card({ picture, text, likes, name, genre, gameId, hasUserLiked }) {
       <div class='px-6 py-4'>
         <div class='font-bold text-xl mb-2 text-gray-200'>{name}</div>
         <div class='font-bold text-xl mb-2 text-gray-200'>{hasUserLiked}</div>
-        {text.length > 100 ? (
-          <p class='text-gray-300 text-base'>{text.slice(0, 87)}<bold>...</bold></p>
-        ) : (
-          <p class='text-gray-300 text-base'>{text}</p>
-        )}
+        {text.length > 100 && (
+          <p class='text-gray-300 text-base cursor-pointer' onClick={ () => setShowText(!showText) }>
+            { showText 
+              ? <p class='text-gray-300 text-base'>{text}</p>
+              : <p class='text-gray-300 text-base'>{text.slice(0, 87)}...</p>
+            }
+          </p>
+        )}  
+
       </div>
       <div class='text-center'>
         <button
@@ -63,7 +70,7 @@ function Card({ picture, text, likes, name, genre, gameId, hasUserLiked }) {
             setUserLike(!userLike);
           }}
         >
-          
+      
           <svg
             xmlns='http://www.w3.org/2000/svg'
             className='w-6 h-6'

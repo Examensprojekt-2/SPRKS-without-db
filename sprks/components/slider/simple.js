@@ -34,6 +34,7 @@ const Simple = ({ listType, deviceType, games, user }) => {
         itemAriaLabel = 'hej'
       >
       {games.map((obj) => {
+
         return (
           <div>
             <div className='container pb-4'>
